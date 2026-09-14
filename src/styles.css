@@ -1107,7 +1107,6 @@ html.theme-dim .navbar__mobile.is-open {
   color: var(--ink-soft);
   margin-bottom: 0.8rem;
 }
-
 /* ---------- 10. Contact / Footer ---------- */
 
 .contact__inner {
@@ -1125,32 +1124,61 @@ html.theme-dim .navbar__mobile.is-open {
   margin-right: auto;
 }
 
-.contact__list {
+
+/* ---------- Social Icons ---------- */
+
+.contact__socials {
   display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+  justify-content: center;
   align-items: center;
-  margin: 1.6rem 0;
+  gap: 1.2rem;
+  margin: 1.8rem 0;
 }
 
-.contact__list a {
+.contact__social {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--cream);
   text-decoration: none;
-  border-bottom: 1px solid rgba(244, 235, 221, 0.4);
+
+  border: 1px solid rgba(244, 235, 221, 0.35);
+  border-radius: 50%;
+
+  background: rgba(244, 235, 221, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.contact__label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: rgba(244, 235, 221, 0.55);
-  margin-right: 0.6rem;
+.contact__social svg {
+  width: 21px;
+  height: 21px;
+  stroke-width: 1.8;
 }
+
+.contact__social:hover {
+  transform: translateY(-4px) rotate(-3deg);
+  background: rgba(244, 235, 221, 0.12);
+  border-color: rgba(244, 235, 221, 0.7);
+}
+
+
+/* ---------- Thanks ---------- */
 
 .contact__thanks {
   font-size: 1.35rem;
   margin-top: 1rem;
   margin-bottom: 0;
 }
+
+
+/* ---------- Decorative Doodles ---------- */
 
 .contact__doodle {
   position: absolute;
@@ -1165,6 +1193,41 @@ html.theme-dim .navbar__mobile.is-open {
 .contact__doodle--clip {
   bottom: 1.8rem;
   right: 2.2rem;
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+  .contact__inner {
+    padding: 2.6rem 1.3rem;
+  }
+
+  .contact__socials {
+    gap: 0.9rem;
+  }
+
+  .contact__social {
+    width: 44px;
+    height: 44px;
+  }
+
+  .contact__social svg {
+    width: 19px;
+    height: 19px;
+  }
+}
+/* ---------- Thanks ---------- */
+
+.contact__thanks {
+  font-size: 1.35rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: #F3E8D7;
+}
+
+html.theme-dim .contact__thanks {
+  color: #E8D8C4;
 }
 
 .footer {
