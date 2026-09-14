@@ -2936,6 +2936,435 @@ html.theme-dim .certifications__link:hover {
   transform: rotate(25deg);
 }
 
+/* ---------- Contact ---------- */
+
+.contact {
+  position: relative;
+}
+
+.contact__inner {
+  position: relative;
+  background: var(--navy-panel);
+  color: var(--cream);
+  padding: 3.2rem 2.5rem;
+  text-align: center;
+  overflow: visible;
+}
+
+/* ---------- Contact text ---------- */
+
+.contact__lede {
+  color: rgba(244, 235, 221, 0.85);
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ---------- Contact form ---------- */
+
+.contact__form {
+  width: min(100%, 720px);
+  margin: 2.2rem auto 0;
+  text-align: left;
+}
+
+.contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+.contact__field label {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: #E8D8C4;
+  padding-left: 0.15rem;
+}
+
+.contact__field input,
+.contact__field textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(244, 235, 221, 0.25);
+  border-radius: 3px;
+
+  background: rgba(244, 235, 221, 0.08);
+  color: #F3E8D7;
+
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+
+  padding: 0.8rem 0.9rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact__field input::placeholder,
+.contact__field textarea::placeholder {
+  color: rgba(244, 235, 221, 0.45);
+}
+
+.contact__field input:focus,
+.contact__field textarea:focus {
+  border-color: #C9AD8C;
+  background: rgba(244, 235, 221, 0.11);
+  box-shadow: 0 0 0 3px rgba(201, 173, 140, 0.12);
+}
+
+.contact__field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+
+/* ---------- Send button ---------- */
+
+.contact__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+
+  margin: 0.4rem auto 0;
+  padding: 0.75rem 1.5rem;
+
+  border: 1px solid rgba(244, 235, 221, 0.45);
+  border-radius: 3px;
+
+  background: #D9C1A4;
+  color: #46362A;
+
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    3px 3px 0 rgba(70, 54, 42, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.contact__submit span {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.contact__submit:hover {
+  background: #E5D4BC;
+  transform: translate(-2px, -2px);
+  box-shadow:
+    5px 5px 0 rgba(70, 54, 42, 0.28);
+}
+
+.contact__submit:hover span {
+  transform: translateX(3px);
+}
+
+.contact__submit:active {
+  transform: translate(0, 0);
+  box-shadow:
+    2px 2px 0 rgba(70, 54, 42, 0.25);
+}
+
+
+/* ---------- Success message ---------- */
+
+.contact__success {
+  width: min(100%, 520px);
+  margin: 2.5rem auto 0;
+  padding: 2rem 1.5rem;
+
+  border: 1px dashed rgba(244, 235, 221, 0.35);
+  background: rgba(244, 235, 221, 0.06);
+
+  text-align: center;
+}
+
+.contact__success-star {
+  font-size: 1.8rem;
+  color: #C9AD8C;
+  margin-bottom: 0.5rem;
+}
+
+.contact__success h3 {
+  color: #F3E8D7;
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.contact__success p {
+  color: rgba(244, 235, 221, 0.75);
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.contact__send-another {
+  background: transparent;
+  border: none;
+  color: #C9AD8C;
+
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact__send-another:hover {
+  color: #E5D4BC;
+}
+
+
+/* ---------- Divider ---------- */
+
+.contact__divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  width: min(100%, 720px);
+  margin: 2.3rem auto 1.5rem;
+
+  color: rgba(244, 235, 221, 0.5);
+
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+}
+
+.contact__divider::before,
+.contact__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(244, 235, 221, 0.2);
+}
+
+
+/* ---------- Social icons ---------- */
+
+.contact__socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1.2rem;
+  margin: 1.2rem 0;
+}
+
+.contact__social {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--cream);
+  text-decoration: none;
+
+  border: 1px solid rgba(244, 235, 221, 0.35);
+  border-radius: 50%;
+
+  background: rgba(244, 235, 221, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.contact__social svg {
+  width: 21px;
+  height: 21px;
+}
+
+.contact__social:hover {
+  transform: translateY(-4px) rotate(-3deg);
+  background: rgba(244, 235, 221, 0.12);
+  border-color: rgba(244, 235, 221, 0.7);
+}
+
+
+/* ---------- Thank you ---------- */
+
+.contact__thanks {
+  font-size: 1.35rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: #F3E8D7;
+}
+
+html.theme-dim .contact__thanks {
+  color: #E8D8C4;
+}
+
+
+/* ---------- Decorations ---------- */
+
+.contact__doodle {
+  position: absolute;
+  color: rgba(244, 235, 221, 0.55);
+  z-index: 4;
+}
+
+.contact__doodle--flower {
+  top: 1.6rem;
+  left: 2rem;
+}
+
+.contact__doodle--clip {
+  top: -22px;
+  left: 28px;
+
+  width: 48px;
+  height: 82px;
+
+  color: #8A7766;
+
+  transform: rotate(-12deg);
+
+  z-index: 5;
+}
+
+
+/* ---------- Dark mode ---------- */
+
+html.theme-dim .contact__field label {
+  color: #E8D8C4;
+}
+
+html.theme-dim .contact__field input,
+html.theme-dim .contact__field textarea {
+  background: rgba(232, 216, 196, 0.06);
+  border-color: rgba(232, 216, 196, 0.22);
+  color: #E8D8C4;
+}
+
+html.theme-dim .contact__field input::placeholder,
+html.theme-dim .contact__field textarea::placeholder {
+  color: rgba(232, 216, 196, 0.4);
+}
+
+html.theme-dim .contact__field input:focus,
+html.theme-dim .contact__field textarea:focus {
+  border-color: #B49370;
+  background: rgba(232, 216, 196, 0.09);
+  box-shadow: 0 0 0 3px rgba(180, 148, 112, 0.12);
+}
+
+html.theme-dim .contact__submit {
+  background: #B49370;
+  color: #241B17;
+  border-color: rgba(232, 216, 196, 0.3);
+}
+
+html.theme-dim .contact__submit:hover {
+  background: #C9AD8C;
+}
+
+html.theme-dim .contact__success {
+  border-color: rgba(232, 216, 196, 0.25);
+  background: rgba(232, 216, 196, 0.04);
+}
+
+html.theme-dim .contact__success h3 {
+  color: #E8D8C4;
+}
+
+html.theme-dim .contact__success p {
+  color: rgba(232, 216, 196, 0.7);
+}
+
+html.theme-dim .contact__send-another {
+  color: #B49370;
+}
+
+html.theme-dim .contact__send-another:hover {
+  color: #D0AF8C;
+}
+
+html.theme-dim .contact__divider {
+  color: rgba(232, 216, 196, 0.45);
+}
+
+html.theme-dim .contact__divider::before,
+html.theme-dim .contact__divider::after {
+  background: rgba(232, 216, 196, 0.18);
+}
+
+html.theme-dim .contact__social {
+  color: #E8D8C4;
+  border-color: rgba(232, 216, 196, 0.28);
+  background: rgba(232, 216, 196, 0.04);
+}
+
+html.theme-dim .contact__social:hover {
+  background: rgba(232, 216, 196, 0.1);
+  border-color: rgba(232, 216, 196, 0.6);
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 700px) {
+  .contact__inner {
+    padding: 2.7rem 1.2rem;
+  }
+
+  .contact__form {
+    margin-top: 1.8rem;
+  }
+
+  .contact__form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .contact__field {
+    margin-bottom: 1rem;
+  }
+
+  .contact__submit {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .contact__divider {
+    margin-top: 2rem;
+  }
+
+  .contact__doodle--flower {
+    top: 1rem;
+    left: 0.8rem;
+    transform: scale(0.85);
+  }
+
+  .contact__doodle--clip {
+    top: -18px;
+    left: 12px;
+    width: 42px;
+    height: 72px;
+  }
+}
 
 /* =========================================================
    BOOK STACK
