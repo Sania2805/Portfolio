@@ -4275,3 +4275,141 @@ html.theme-dim .coding__tape {
     right: 40px;
   }
 }
+/* =========================================================
+   CUSTOM SCRAPBOOK CURSOR
+   ========================================================= */
+
+.cursor__star {
+  position: fixed;
+  z-index: 99999;
+
+  width: 20px;
+  height: 20px;
+
+  pointer-events: none;
+
+  color: #8A7766;
+
+  transform:
+    translate(-35%, -35%)
+    rotate(-8deg);
+
+  opacity: 0;
+
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.cursor__star--hover {
+  width: 27px;
+  height: 27px;
+
+  color: #A47D68;
+
+  transform:
+    translate(-35%, -35%)
+    rotate(8deg);
+}
+
+
+/* ---------- Tiny trail ---------- */
+
+.cursor__trail {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+
+  pointer-events: none;
+}
+
+.cursor__dot {
+  position: fixed;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #B49A82;
+
+  transform: translate(-50%, -50%);
+
+  opacity: 0;
+
+  animation: cursorDotFade 0.5s ease-out forwards;
+}
+
+.cursor__dot--1 {
+  width: 3px;
+  height: 3px;
+  animation-delay: 0.05s;
+}
+
+.cursor__dot--2 {
+  width: 2px;
+  height: 2px;
+  animation-delay: 0.1s;
+}
+
+@keyframes cursorDotFade {
+  0% {
+    opacity: 0.65;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+
+
+/* ---------- Dark mode ---------- */
+
+html.theme-dim .cursor__star {
+  color: #E8D8C4;
+}
+
+html.theme-dim .cursor__star--hover {
+  color: #D0AF8C;
+}
+
+html.theme-dim .cursor__dot {
+  background: #C7AA8B;
+}
+
+
+/* ---------- Hide normal cursor on desktop ---------- */
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none;
+  }
+
+  .cursor__star {
+    opacity: 0.9;
+  }
+}
+
+
+/* ---------- Keep normal cursor on mobile ---------- */
+
+@media (pointer: coarse) {
+  .cursor__star,
+  .cursor__trail {
+    display: none;
+  }
+}

@@ -9,6 +9,7 @@ import Hackathons from './sections/Hackathons.jsx'
 import Certifications from './sections/Certifications.jsx'
 import Contact from './sections/Contact.jsx'
 import Footer from './sections/Footer.jsx'
+import Cursor from './components/Cursor.jsx'
 
 import {
   Book,
@@ -23,7 +24,7 @@ import {
 export default function App() {
   return (
     <div className="board">
-
+      <Cursor />
       <Navbar />
 
       {/* ---------- Scrapbook decorations ---------- */}

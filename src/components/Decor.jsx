@@ -11,7 +11,7 @@ export function Tape({ className = '', rotate = -4, style = {} }) {
   )
 }
 
-export function Star({ className = '', size = 22 }) {
+export function Star({ className = '', size = 22, style  }) {
   return (
     <svg
       className={`doodle ${className}`}
@@ -20,6 +20,7 @@ export function Star({ className = '', size = 22 }) {
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
+        style={style}
     >
       <path
         d="M12 2.5c.6 3.3 1.4 5.6 2.6 6.9 1.3 1.2 3.6 2 6.9 2.6-3.3.6-5.6 1.4-6.9 2.6-1.2 1.3-2 3.6-2.6 6.9-.6-3.3-1.4-5.6-2.6-6.9-1.3-1.2-3.6-2-6.9-2.6 3.3-.6 5.6-1.4 6.9-2.6 1.2-1.3 2-3.6 2.6-6.9Z"
