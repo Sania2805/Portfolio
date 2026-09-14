@@ -412,7 +412,6 @@ html.theme-dim .scrap-card--navy {
   color: var(--ink-soft);
 }
 
-/* ---------- 3. Navbar ---------- */
 
 /* ---------- 3. Navbar ---------- */
 
@@ -426,13 +425,17 @@ html.theme-dim .scrap-card--navy {
 }
 
 .navbar__inner {
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0.9rem 1.5rem;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+
+  box-sizing: border-box;
 }
 
 .navbar__brand {
@@ -491,9 +494,13 @@ html.theme-dim .scrap-card--navy {
   border-radius: 50%;
   cursor: pointer;
   font-size: 1rem;
+
   display: grid;
   place-items: center;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .theme-toggle:hover {
@@ -536,6 +543,7 @@ html.theme-dim .scrap-card--navy {
   font-size: 1rem;
 }
 
+
 /* ---------- Dark mode navbar ---------- */
 
 html.theme-dim .navbar {
@@ -556,6 +564,7 @@ html.theme-dim .navbar__links a:hover {
 html.theme-dim .navbar__mobile.is-open {
   background: #18120F;
 }
+
 /* ---------- 4. Hero ---------- */
 
 .hero {
@@ -1364,7 +1373,27 @@ html.theme-dim .footer__copy {
     gap: 2rem;
   }
 }
+@media (max-width: 768px) {
+  .navbar__inner {
+    padding: 0.75rem 1rem;
+  }
 
+  .navbar__brand {
+    font-size: 1.35rem;
+  }
+
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__actions {
+    margin-left: auto;
+  }
+
+  .navbar__burger {
+    display: flex;
+  }
+}
 @media (max-width: 480px) {
   .hero__actions {
     flex-direction: column;
@@ -2788,6 +2817,7 @@ html.theme-dim .certifications__link:hover {
 
   overflow: hidden;
 }
+
 
 
 /* Every decoration */
