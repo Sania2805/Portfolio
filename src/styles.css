@@ -1,0 +1,4183 @@
+/* ============================================================
+   SANIA GHOSH — SCRAPBOOK PORTFOLIO
+   Plain CSS. No frameworks. Organized in sections:
+   1. Tokens & resets
+   2. Paper / tape / doodle primitives
+   3. Navbar
+   4. Hero
+   5. About + Currently Exploring
+   6. Projects / carousel
+   7. Skills
+   8. Coding
+   9. Journey / Hackathons / Certifications
+   10. Contact / Footer
+   11. Responsive
+   ============================================================ */
+
+/* ---------- 1. Tokens & resets ---------- */
+:root {
+  /* ---------- Light scrapbook palette ---------- */
+  --navy: #5A4636;
+  --navy-deep: #46362A;
+  --navy-panel: #6A5340;
+
+  --cream: #F3E8D7;
+  --paper-2: #E5D4BC;
+  --ink: #3D3026;
+  --ink-soft: #6B5A4A;
+
+  --dusty-blue: #9A8570;
+  --sage: #89967A;
+  --lavender: #A89986;
+  --beige: #C9AD8C;
+  --blush: #C9907E;
+
+  --page-bg: #F4EBDD;
+
+  --shadow-paper:
+    0 10px 24px -12px rgba(70, 54, 42, 0.35),
+    0 2px 6px rgba(70, 54, 42, 0.14);
+
+  --shadow-soft:
+    0 6px 16px -8px rgba(70, 54, 42, 0.25);
+
+  --radius-tiny: 3px;
+  --max-width: 1240px;
+
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-hand: 'Caveat', 'Patrick Hand', cursive;
+}
+
+
+/* ---------- Dark scrapbook palette ---------- */
+
+html.theme-dim {
+  --navy: #241B17;
+  --navy-deep: #18120F;
+  --navy-panel: #30231D;
+
+  --cream: #E8D8C4;
+  --paper-2: #3A2C24;
+  --ink: #E8D8C4;
+  --ink-soft: #B9A493;
+
+  --dusty-blue: #9B8775;
+  --sage: #87907A;
+  --lavender: #9B8C82;
+  --beige: #B49370;
+  --blush: #B77F70;
+
+  --page-bg: #211915;
+
+  --shadow-paper:
+    0 12px 28px -12px rgba(0, 0, 0, 0.65),
+    0 3px 8px rgba(0, 0, 0, 0.35);
+
+  --shadow-soft:
+    0 7px 18px -8px rgba(0, 0, 0, 0.5);
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--page-bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 0.5em;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--dusty-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.handwritten {
+  font-family: var(--font-hand);
+  color: var(--ink-soft);
+}
+
+.eyebrow-hand {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  color: var(--ink-soft);
+  margin-bottom: 0;
+}
+
+.section {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  color: var(--cream);
+}
+
+.about .section-title,
+.exploring__card .section-title,
+.skills .section-title,
+.journey .section-title,
+.hackathons .section-title,
+.certifications .section-title {
+  color: var(--ink);
+}
+
+.section-title--sm {
+  font-size: 1.3rem;
+}
+
+.section-title--on-dark {
+  color: var(--cream);
+}
+
+/* ---------- 2. Paper / tape / doodle primitives ---------- */
+
+.torn-paper {
+  clip-path: polygon(
+    0% 2%, 4% 0%, 9% 1.4%, 16% 0.2%, 23% 1.3%, 31% 0%, 39% 1.2%, 47% 0.1%,
+    55% 1.3%, 63% 0%, 71% 1.2%, 79% 0.1%, 87% 1.3%, 95% 0%, 100% 2%,
+    99.2% 9%, 100% 16%, 99.1% 23%, 100% 31%, 99.2% 39%, 100% 47%,
+    99.1% 55%, 100% 63%, 99.2% 71%, 100% 79%, 99.1% 87%, 100% 95%, 100% 98%,
+    96% 100%, 91% 98.7%, 84% 99.9%, 77% 98.6%, 69% 100%, 61% 98.7%,
+    53% 99.9%, 45% 98.6%, 37% 100%, 29% 98.7%, 21% 99.9%, 13% 98.6%, 5% 100%, 0% 98%,
+    0.9% 91%, 0% 84%, 0.8% 77%, 0% 69%, 0.9% 61%, 0% 53%, 0.8% 45%,
+    0% 37%, 0.9% 29%, 0% 21%, 0.8% 13%, 0% 5%
+  );
+}
+
+.scrap-card {
+  position: relative;
+  background: var(--cream);
+  padding: 2rem;
+  box-shadow: var(--shadow-paper);
+  transform: rotate(var(--rotate, 0deg));
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.scrap-card--cream {
+  background: #EADBC7;
+  color: var(--ink);
+}
+
+.scrap-card--beige {
+  background: #D9C1A4;
+  color: var(--ink);
+}
+
+.scrap-card--navy {
+  background: var(--navy-panel);
+  color: var(--cream);
+}
+html.theme-dim .scrap-card--cream {
+  background: #403027;
+}
+
+html.theme-dim .scrap-card--beige {
+  background: #4A372C;
+}
+
+html.theme-dim .scrap-card--navy {
+  background: #30231D;
+}
+.scrap-card:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 18px 30px -14px rgba(12, 18, 30, 0.5), 0 4px 10px rgba(12, 18, 30, 0.2);
+}
+
+.scrap-card__tape,
+.tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  translate: -50% 0;
+  width: 90px;
+  height: 26px;
+  background: rgba(216, 169, 166, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 4px rgba(12, 18, 30, 0.15);
+  pointer-events: none;
+}
+
+.doodle {
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+
+/* Polaroid frame */
+.polaroid {
+  position: relative;
+  margin: 0;
+  background: #fffdf9;
+  padding: 0.8rem 0.8rem 1.4rem;
+  box-shadow: var(--shadow-paper);
+  transform: rotate(var(--rotate, 0deg));
+  width: min(320px, 100%);
+  transition: transform 0.35s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+.polaroid__tape {
+  top: -14px;
+}
+
+.polaroid__window {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--dusty-blue), var(--lavender));
+}
+
+.polaroid__window img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid__placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.12) 10px,
+    rgba(255, 255, 255, 0.04) 10px,
+    rgba(255, 255, 255, 0.04) 20px
+  );
+}
+
+.polaroid__placeholder span {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.polaroid__caption {
+  text-align: center;
+  margin-top: 0.6rem;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 30px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  background: var(--navy);
+  color: var(--cream);
+}
+
+.btn--primary:hover {
+  background: var(--navy-deep);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  background: rgba(24, 38, 58, 0.06);
+}
+
+.btn--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.btn--dark:hover {
+  background: var(--navy-deep);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn--outline:hover {
+  background: rgba(24, 38, 58, 0.06);
+}
+
+.btn--ghost-dark {
+  background: transparent;
+  border-color: rgba(244, 235, 221, 0.5);
+  color: var(--cream);
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn--ghost-dark:hover {
+  background: rgba(244, 235, 221, 0.1);
+}
+
+.link-arrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-list li {
+  font-size: 0.82rem;
+  padding: 0.3rem 0.7rem;
+  background: rgba(24, 38, 58, 0.07);
+  border-radius: 20px;
+  color: var(--ink-soft);
+}
+
+/* ---------- 3. Navbar ---------- */
+
+/* ---------- 3. Navbar ---------- */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #5A4636;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.navbar__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar__brand {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: #F3E8D7;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.navbar__links a {
+  font-size: 0.92rem;
+  color: rgba(243, 232, 215, 0.82);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.navbar__links a:hover {
+  color: #F3E8D7;
+}
+
+.navbar__links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -2px;
+  height: 1.5px;
+  background: var(--blush);
+  transition: right 0.25s ease;
+}
+
+.navbar__links a:hover::after {
+  right: 0;
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(243, 232, 215, 0.35);
+  color: #F3E8D7;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(243, 232, 215, 0.1);
+  transform: rotate(-12deg);
+}
+
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.navbar__burger span {
+  width: 22px;
+  height: 2px;
+  background: #F3E8D7;
+  border-radius: 2px;
+}
+
+.navbar__mobile {
+  display: none;
+}
+
+.navbar__mobile.is-open {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem 1.2rem;
+  gap: 0.9rem;
+  background: #46362A;
+}
+
+.navbar__mobile a {
+  color: #F3E8D7;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* ---------- Dark mode navbar ---------- */
+
+html.theme-dim .navbar {
+  background: #18120F;
+  border-bottom-color: rgba(232, 216, 196, 0.1);
+}
+
+html.theme-dim .navbar__brand,
+html.theme-dim .navbar__links a,
+html.theme-dim .theme-toggle {
+  color: var(--cream);
+}
+
+html.theme-dim .navbar__links a:hover {
+  color: #F1E4D3;
+}
+
+html.theme-dim .navbar__mobile.is-open {
+  background: #18120F;
+}
+/* ---------- 4. Hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 2.5rem;
+  align-items: start;
+  padding-top: 3rem;
+}
+
+.hero__card {
+  padding: 3rem 2.8rem;
+}
+
+.hero__margin-note {
+  position: absolute;
+  top: 1.2rem;
+  left: -0.5rem;
+  font-size: 1.05rem;
+  color: var(--dusty-blue);
+  transform: rotate(-4deg);
+  line-height: 1.3;
+}
+
+.hero__name {
+  font-family: var(--font-hand);
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  margin: 0.2rem 0 0.6rem;
+  color: var(--ink);
+}
+
+.hero__roles {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.hero__tagline {
+  font-size: 1.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
+}
+
+.hero__social {
+  display: flex;
+  gap: 1rem;
+}
+
+.hero__social a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--ink-soft);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.hero__social a:hover {
+  background: rgba(24, 38, 58, 0.08);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.hero__leaf {
+  position: absolute;
+  color: var(--sage);
+}
+
+.hero__leaf--1 {
+  bottom: -10px;
+  left: -14px;
+  transform: rotate(-20deg);
+}
+
+.hero__leaf--2 {
+  top: 30%;
+  right: -18px;
+  transform: rotate(40deg);
+  color: var(--dusty-blue);
+}
+
+.hero__star {
+  position: absolute;
+  top: 1rem;
+  right: 1.4rem;
+  color: var(--blush);
+}
+
+.hero__portrait {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+.hero__book-doodle {
+  position: absolute;
+  bottom: 10px;
+  left: -6px;
+  color: var(--beige);
+  transform: rotate(-8deg);
+}
+
+/* ---------- 5. About + Currently Exploring ---------- */
+
+.about {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.about__card {
+  padding-bottom: 2.6rem;
+}
+
+.about__doodle {
+  position: absolute;
+  color: var(--dusty-blue);
+}
+
+.about__doodle--brush {
+  top: -12px;
+  right: 1.6rem;
+  color: var(--blush);
+  transform: rotate(12deg);
+}
+
+.about__doodle--book {
+  bottom: 1.4rem;
+  right: 1.6rem;
+  color: var(--sage);
+}
+
+.about__doodle--leaf {
+  bottom: -8px;
+  left: -10px;
+  color: var(--sage);
+}
+
+.about__note {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.exploring__card {
+  position: relative;
+}
+
+.exploring__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  font-size: 0.98rem;
+  border-bottom: 1px dashed rgba(24, 38, 58, 0.15);
+}
+
+.exploring__list li:last-child {
+  border-bottom: none;
+}
+
+.exploring__check {
+  color: var(--sage);
+  font-weight: 700;
+}
+
+.exploring__arrow {
+  position: absolute;
+  bottom: 3.4rem;
+  right: 1rem;
+  color: var(--dusty-blue);
+}
+
+.exploring__note {
+  font-size: 1.2rem;
+  margin: 1rem 0 0;
+  text-align: right;
+}
+
+/* ---------- 6. Projects / carousel ---------- */
+
+.projects {
+  position: relative;
+}
+
+.projects__heading {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.projects__subtitle {
+  font-size: 1.3rem;
+  margin-top: -0.3rem;
+}
+
+.projects__arrow-doodle {
+  position: absolute;
+  top: -6px;
+  left: 240px;
+  color: var(--lavender);
+}
+
+.projects__leaf {
+  position: absolute;
+  bottom: -10px;
+  left: -6px;
+  color: var(--sage);
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carousel:focus-visible {
+  outline-offset: 6px;
+}
+
+.carousel__arrow {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(244, 235, 221, 0.5);
+  background: var(--navy-panel);
+  color: var(--cream);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.carousel__arrow:hover {
+  background: var(--dusty-blue);
+  transform: scale(1.06);
+}
+
+.carousel__panel {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--paper-2);
+  padding: 2.4rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-paper);
+}
+
+.carousel__star {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  color: var(--lavender);
+}
+
+.carousel__slide {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2.4rem;
+  align-items: center;
+}
+
+@keyframes slide-in-next {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.carousel__slide--next {
+  animation: slide-in-next 0.4s ease;
+}
+
+.carousel__slide--prev {
+  animation: slide-in-prev 0.4s ease;
+}
+
+.carousel__image {
+  justify-self: center;
+}
+
+.carousel__label {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--dusty-blue);
+  margin-bottom: 0.2rem;
+}
+
+.carousel__desc {
+  color: var(--ink-soft);
+}
+
+.carousel__links {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+}
+
+.carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--dusty-blue);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.carousel__dot.is-active {
+  background: var(--dusty-blue);
+}
+
+/* ---------- 7. Skills ---------- */
+
+.skills {
+  position: relative;
+  text-align: center;
+}
+
+.skills__subtitle {
+  font-size: 1.3rem;
+  margin-top: -0.4rem;
+}
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.6rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.skills__note h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.9rem;
+}
+
+.skills__star {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  color: var(--blush);
+}
+
+/* ---------- 8. Coding ---------- */
+
+.coding__inner {
+  position: relative;
+  background: var(--navy-panel);
+  color: var(--cream);
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+
+.coding__subtitle {
+  font-size: 1.3rem;
+  color: rgba(244, 235, 221, 0.8);
+}
+
+.coding__stats {
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+}
+
+.coding__number {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.1rem;
+}
+
+.coding__label {
+  font-size: 0.9rem;
+  color: rgba(244, 235, 221, 0.75);
+  margin-bottom: 1rem;
+}
+
+.coding__doodle {
+  position: absolute;
+  color: rgba(244, 235, 221, 0.5);
+}
+
+.coding__doodle--laptop {
+  bottom: 1.6rem;
+  right: 2rem;
+}
+
+.coding__doodle--star {
+  top: 1.6rem;
+  left: 2rem;
+}
+
+.coding__arrow {
+  position: absolute;
+  bottom: -4px;
+  left: 40%;
+  color: rgba(244, 235, 221, 0.4);
+}
+
+/* ---------- 9. Journey / Hackathons / Certifications ---------- */
+
+.journey {
+  text-align: center;
+}
+
+.timeline {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 2.4rem;
+  padding: 0 1rem;
+}
+
+.timeline__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+}
+
+.timeline__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  display: grid;
+  place-items: center;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.timeline__label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 0.1rem;
+}
+
+.timeline__sub {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.timeline__connector {
+  position: absolute;
+  right: -1.9rem;
+  top: 1rem;
+  color: var(--dusty-blue);
+  font-size: 1.2rem;
+}
+
+.journey__note {
+  font-size: 1.25rem;
+  margin-top: 1.6rem;
+}
+
+.journey__experience {
+  max-width: 480px;
+  margin: 2.4rem auto 0;
+  text-align: left;
+}
+
+.hackathons__heading {
+  position: relative;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hackathons__doodle {
+  position: absolute;
+  top: -8px;
+  right: 30%;
+  color: var(--dusty-blue);
+}
+
+.hackathons__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.6rem;
+}
+
+.hackathons__card h3 {
+  font-size: 1.05rem;
+}
+
+.hackathons__card p {
+  color: var(--ink-soft);
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+.certifications {
+  text-align: center;
+}
+
+.certifications__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.certifications__card h3 {
+  font-size: 1.05rem;
+}
+
+.certifications__issuer {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.8rem;
+}
+
+/* ---------- 10. Contact / Footer ---------- */
+
+.contact__inner {
+  position: relative;
+  background: var(--navy-panel);
+  color: var(--cream);
+  padding: 3.2rem 2.5rem;
+  text-align: center;
+}
+
+.contact__lede {
+  color: rgba(244, 235, 221, 0.85);
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: center;
+  margin: 1.6rem 0;
+}
+
+.contact__list a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244, 235, 221, 0.4);
+}
+
+.contact__label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(244, 235, 221, 0.55);
+  margin-right: 0.6rem;
+}
+
+.contact__thanks {
+  font-size: 1.35rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.contact__doodle {
+  position: absolute;
+  color: rgba(244, 235, 221, 0.55);
+}
+
+.contact__doodle--flower {
+  top: 1.6rem;
+  left: 2rem;
+}
+
+.contact__doodle--clip {
+  bottom: 1.8rem;
+  right: 2.2rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 2.4rem 1.5rem 3rem;
+  color: rgba(244, 235, 221, 0.7);
+}
+
+.footer__brand {
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.footer__tagline {
+  font-size: 0.85rem;
+  margin-bottom: 0.6rem;
+}
+
+.footer__links a {
+  text-decoration: none;
+}
+
+.footer__links a:hover {
+  color: var(--cream);
+}
+
+.footer__copy {
+  font-size: 0.78rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0;
+  color: rgba(244, 235, 221, 0.45);
+}
+
+/* ---------- 11. Responsive ---------- */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__portrait {
+    order: -1;
+    max-width: 280px;
+    margin: 0 auto 1rem;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel__slide {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .carousel__links {
+    justify-content: center;
+  }
+
+  .carousel {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .carousel__panel {
+    order: 1;
+    width: 100%;
+  }
+
+  .carousel__arrow {
+    order: 2;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__burger {
+    display: flex;
+  }
+
+  .hero__card {
+    padding: 2.2rem 1.6rem;
+  }
+
+  .section {
+    padding: 2.6rem 1.2rem;
+  }
+
+  .timeline {
+    gap: 1.6rem;
+  }
+
+  .timeline__connector {
+    display: none;
+  }
+
+  .coding__stats {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    justify-content: center;
+  }
+
+  .carousel__arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* ---------- 12. Small polish additions ---------- */
+
+.carousel__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.coding__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.star {
+  width: 28px;
+  height: 28px;
+  color: var(--blush);
+  opacity: 0.8;
+}
+
+.star--small {
+  width: 18px;
+  height: 18px;
+  transform: rotate(12deg);
+}
+
+.star-doodle--large {
+  width: 38px;
+  height: 38px;
+  transform: rotate(-7deg);
+}
+
+/* =========================================================
+   PROJECTS — SCRAPBOOK REDESIGN
+   ========================================================= */
+
+.projects {
+  position: relative;
+  padding-top: 2.5rem;
+  padding-bottom: 5rem;
+  overflow: hidden;
+}
+
+
+/* ---------- Heading ---------- */
+
+.projects__heading {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto 2.2rem;
+}
+
+.projects__heading-paper {
+  position: relative;
+  padding: 1rem 2.4rem 0.9rem;
+  background: #D9C1A4;
+  box-shadow: var(--shadow-paper);
+  transform: rotate(-1deg);
+}
+.projects__heading-paper::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  right: 55px;
+  width: 80px;
+  height: 18px;
+  background: rgba(210, 190, 160, 0.65);
+  transform: rotate(4deg);
+}
+
+.projects__heading .section-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  color: var(--ink);
+}
+
+.projects__title-star {
+  width: 24px;
+  height: 24px;
+  color: var(--blush);
+  transform: rotate(8deg);
+}
+
+.projects__subtitle {
+  margin: 0.1rem 0 0;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+
+.projects__arrow-doodle {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  right: -82px;
+  bottom: -35px;
+  color: var(--ink-soft);
+  transform: rotate(10deg);
+}
+
+
+/* =========================================================
+   MAIN CAROUSEL
+   ========================================================= */
+
+.carousel {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+  outline: none;
+}
+
+
+/* ---------- Large paper ---------- */
+
+.carousel__panel {
+  position: relative;
+  min-height: 390px;
+  padding: 2rem 2.5rem;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.16),
+      transparent 35%
+    ),
+    #E8DED0;
+
+  color: var(--ink);
+
+  box-shadow:
+    0 16px 30px -18px rgba(60, 48, 38, 0.45),
+    0 4px 10px rgba(60, 48, 38, 0.13);
+
+  transform: rotate(0.25deg);
+}
+
+
+/* Little tape pieces */
+
+.carousel__panel::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 24%;
+  width: 110px;
+  height: 25px;
+  background: rgba(211, 190, 158, 0.62);
+  transform: rotate(-3deg);
+}
+
+.carousel__panel::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: 15%;
+  width: 85px;
+  height: 22px;
+  background: rgba(211, 190, 158, 0.52);
+  transform: rotate(5deg);
+}
+
+
+/* ---------- Slide ---------- */
+
+.carousel__slide {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  align-items: center;
+  gap: 3rem;
+  min-height: 350px;
+}
+
+
+/* ---------- Screenshot area ---------- */
+
+.carousel__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.carousel__image {
+  width: min(100%, 470px);
+}
+
+
+/* ---------- Project information ---------- */
+
+.carousel__info {
+  padding: 0.5rem 1rem 0.5rem 0;
+}
+
+.carousel__label {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+}
+
+.carousel__info h3 {
+  margin: 0 0 0.8rem;
+  font-family: var(--font-hand);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.carousel__desc {
+  max-width: 430px;
+  margin: 0 0 1.2rem;
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+
+/* ---------- Technology tags ---------- */
+
+.carousel .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  list-style: none;
+}
+
+.carousel .tag-list li {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: #D5D0C7;
+  border: 1px solid rgba(61, 48, 38, 0.12);
+  color: var(--ink);
+  font-size: 0.76rem;
+}
+
+
+/* ---------- Buttons ---------- */
+
+.carousel__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.carousel__links .btn {
+  white-space: nowrap;
+}
+
+
+/* ---------- Arrows ---------- */
+
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  border: 1px solid rgba(61, 48, 38, 0.25);
+
+  background: var(--cream);
+  color: var(--ink);
+
+  font-size: 1.15rem;
+  cursor: pointer;
+
+  box-shadow: var(--shadow-soft);
+
+  transform: translateY(-50%);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.carousel__arrow:hover {
+  background: var(--beige);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel__arrow--left {
+  left: 0;
+}
+
+.carousel__arrow--right {
+  right: 0;
+}
+
+
+/* ---------- Star ---------- */
+
+.carousel__star {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+
+  width: 25px;
+  height: 25px;
+
+  color: var(--blush);
+  opacity: 0.75;
+  transform: rotate(12deg);
+}
+
+
+/* =========================================================
+   SMALL PROJECT CARDS
+   ========================================================= */
+
+.projects__mini-grid {
+  max-width: 1080px;
+  margin: 1.2rem auto 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+
+.project-mini {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  align-items: center;
+  gap: 1.2rem;
+
+  min-height: 205px;
+  padding: 1.1rem;
+
+  background: #EADBC7;
+  color: var(--ink);
+
+  box-shadow: var(--shadow-paper);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.project-mini:nth-child(1) {
+  transform: rotate(-0.7deg);
+}
+
+.project-mini:nth-child(2) {
+  transform: rotate(0.7deg);
+}
+
+.project-mini:hover {
+  transform: translateY(-5px) rotate(0deg);
+  box-shadow:
+    0 16px 28px -15px rgba(60, 48, 38, 0.4),
+    0 5px 10px rgba(60, 48, 38, 0.13);
+}
+
+
+/* ---------- Mini card tape ---------- */
+
+.project-mini::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 35%;
+  width: 72px;
+  height: 20px;
+
+  background: rgba(205, 184, 151, 0.6);
+
+  transform: rotate(-4deg);
+}
+
+
+/* ---------- Mini screenshot ---------- */
+
+.project-mini__image-wrap {
+  min-width: 0;
+}
+
+.project-mini__image {
+  width: 100%;
+}
+
+
+/* ---------- Mini content ---------- */
+
+.project-mini__content {
+  min-width: 0;
+}
+
+.project-mini__number {
+  margin: 0 0 0.15rem;
+
+  font-family: var(--font-hand);
+  font-size: 0.95rem;
+
+  color: var(--ink-soft);
+}
+
+.project-mini h3 {
+  margin: 0 0 0.4rem;
+
+  font-family: var(--font-hand);
+  font-size: 1.55rem;
+  line-height: 1.05;
+  font-weight: 500;
+
+  color: var(--navy);
+}
+
+.project-mini p:not(.project-mini__number) {
+  margin: 0 0 0.65rem;
+
+  font-size: 0.72rem;
+  line-height: 1.45;
+
+  color: var(--ink-soft);
+}
+
+
+/* ---------- Mini tags ---------- */
+
+.project-mini__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+
+  padding: 0;
+  margin: 0 0 0.7rem;
+
+  list-style: none;
+}
+
+.project-mini__tags li {
+  padding: 0.2rem 0.5rem;
+
+  border-radius: 999px;
+
+  background: #D6D0C5;
+  border: 1px solid rgba(61, 48, 38, 0.1);
+
+  font-size: 0.62rem;
+  color: var(--ink);
+}
+
+.project-mini__open {
+  font-family: var(--font-hand);
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+
+
+/* =========================================================
+   DOTS
+   ========================================================= */
+
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem;
+
+  margin-top: 1rem;
+}
+
+.carousel__dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border-radius: 50%;
+  border: 1px solid var(--ink-soft);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.carousel__dot.is-active {
+  background: var(--navy);
+  transform: scale(1.25);
+}
+
+
+/* ---------- Decorative leaf ---------- */
+
+.projects__leaf {
+  position: absolute;
+
+  right: 2%;
+  bottom: 25px;
+
+  width: 75px;
+  height: 75px;
+
+  color: var(--sage);
+  opacity: 0.75;
+
+  transform: rotate(-12deg);
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+html.theme-dim .projects__heading-paper {
+  background: #4A372C;
+}
+html.theme-dim .carousel__panel {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.04),
+      transparent 35%
+    ),
+    #3A2C24;
+
+  color: var(--ink);
+
+  box-shadow:
+    0 18px 32px -15px rgba(0, 0, 0, 0.7),
+    0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+html.theme-dim .carousel__info h3,
+html.theme-dim .project-mini h3 {
+  color: var(--cream);
+}
+
+html.theme-dim .carousel .tag-list li,
+html.theme-dim .project-mini__tags li {
+  background: #4A392F;
+  border-color: rgba(232, 216, 196, 0.1);
+  color: var(--cream);
+}
+
+html.theme-dim .project-mini {
+  background: #403027;
+  color: var(--ink);
+}
+
+html.theme-dim .carousel__arrow {
+  background: #403027;
+  color: var(--cream);
+  border-color: rgba(232, 216, 196, 0.2);
+}
+
+html.theme-dim .carousel__arrow:hover {
+  background: #514036;
+}
+
+html.theme-dim .carousel__dot {
+  border-color: var(--cream);
+}
+
+html.theme-dim .carousel__dot.is-active {
+  background: var(--cream);
+}
+
+
+/* =========================================================
+   PROJECT ANIMATION
+   ========================================================= */
+
+.carousel__slide--next {
+  animation: projectSlideNext 0.35s ease both;
+}
+
+.carousel__slide--prev {
+  animation: projectSlidePrev 0.35s ease both;
+}
+
+@keyframes projectSlideNext {
+  from {
+    opacity: 0;
+    transform: translateX(35px) rotate(0.5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes projectSlidePrev {
+  from {
+    opacity: 0;
+    transform: translateX(-35px) rotate(-0.5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .carousel {
+    padding: 0 2.6rem;
+  }
+
+  .carousel__panel {
+    padding: 1.6rem;
+  }
+
+  .carousel__slide {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .carousel__info {
+    padding: 0 0.5rem 0.5rem;
+  }
+
+  .carousel__desc {
+    max-width: none;
+  }
+
+  .carousel__visual {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .project-mini {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .project-mini__image-wrap {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+
+@media (max-width: 620px) {
+
+  .projects {
+    padding-top: 1.5rem;
+  }
+
+  .projects__heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .projects__heading-paper {
+    padding: 0.8rem 1.3rem;
+  }
+
+  .projects__arrow-doodle {
+    display: none;
+  }
+
+  .carousel {
+    padding: 0 1.7rem;
+  }
+
+  .carousel__panel {
+    padding: 1.2rem;
+  }
+
+  .carousel__slide {
+    gap: 1rem;
+  }
+
+  .carousel__info h3 {
+    font-size: 2.15rem;
+  }
+
+  .carousel__desc {
+    font-size: 0.86rem;
+  }
+
+  .carousel__arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .projects__mini-grid {
+    grid-template-columns: 1fr;
+    margin-top: 1rem;
+  }
+
+  .project-mini {
+    grid-template-columns: 40% 1fr;
+  }
+
+  .project-mini__image-wrap {
+    max-width: none;
+  }
+
+  .projects__leaf {
+    display: none;
+  }
+}
+/* Dark mode — GitHub button */
+html.theme-dim .carousel__links .btn--dark {
+  background: #E8D8C4;
+  color: #30231D;
+  border-color: #E8D8C4;
+}
+
+html.theme-dim .carousel__links .btn--dark:hover {
+  background: #F3E8D7;
+  color: #241B17;
+}
+
+/* =========================================================
+   MY JOURNEY — SCRAPBOOK TIMELINE
+   ========================================================= */
+
+.journey {
+  position: relative;
+  padding: 1.8rem 1.5rem 3rem;
+}
+
+
+/* ---------- Heading ---------- */
+
+.journey > .section-title {
+  width: fit-content;
+  margin: 0 0 1.5rem;
+
+  font-family: var(--font-hand);
+  font-size: clamp(1.65rem, 3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1;
+
+  color: var(--ink);
+
+  transform: rotate(-1deg);
+}
+
+.journey > .section-title span {
+  color: var(--blush);
+  font-size: 0.75em;
+  display: inline-block;
+  transform: rotate(8deg);
+}
+
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.timeline {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+
+  max-width: 760px;
+  margin: 0 auto;
+
+  padding: 0;
+  list-style: none;
+}
+
+
+/* ---------- Individual step ---------- */
+
+.timeline__step {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+  text-align: center;
+}
+
+
+/* ---------- Icon circle ---------- */
+
+.timeline__icon {
+  position: relative;
+  z-index: 2;
+
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1.5px solid rgba(61, 48, 38, 0.42);
+  border-radius: 50%;
+
+  background: rgba(243, 232, 215, 0.8);
+  color: var(--navy);
+
+  box-shadow:
+    0 2px 5px rgba(61, 48, 38, 0.08);
+
+  transform: rotate(-2deg);
+}
+
+
+/* Slightly imperfect individual circles */
+
+.timeline__step:nth-child(2) .timeline__icon {
+  transform: rotate(3deg);
+}
+
+.timeline__step:nth-child(3) .timeline__icon {
+  transform: rotate(-4deg);
+}
+
+.timeline__step:nth-child(4) .timeline__icon {
+  transform: rotate(2deg);
+}
+
+
+/* ---------- Connector ---------- */
+
+.timeline__connector {
+  position: absolute;
+
+  top: 21px;
+  left: calc(50% + 22px);
+
+  width: calc(100% - 44px);
+
+  color: var(--ink-soft);
+
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  line-height: 1;
+
+  text-align: center;
+
+  z-index: 1;
+}
+
+
+/* ---------- Main label ---------- */
+
+.timeline__label {
+  position: relative;
+  z-index: 3;
+
+  max-width: 125px;
+
+  margin: 0.7rem auto 0;
+
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.35;
+
+  color: var(--ink);
+}
+
+
+/* ---------- Handwritten sub-label ---------- */
+
+.timeline__sub {
+  max-width: 130px;
+
+  margin: 0.1rem auto 0;
+
+  font-size: 0.7rem;
+  line-height: 1.25;
+
+  color: var(--ink-soft);
+}
+
+
+/* =========================================================
+   JOURNEY NOTE
+   ========================================================= */
+
+.journey__note {
+  position: relative;
+
+  width: fit-content;
+
+  margin: 1.8rem 0 0 0.5rem;
+
+  font-size: 1.05rem;
+  line-height: 1.2;
+
+  color: var(--ink-soft);
+
+  transform: rotate(-2deg);
+}
+
+
+/* Little handwritten underline */
+
+.journey__note::after {
+  content: '';
+
+  position: absolute;
+
+  left: 2px;
+  bottom: -7px;
+
+  width: 75px;
+  height: 1px;
+
+  background: var(--sage);
+
+  transform: rotate(-3deg);
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+html.theme-dim .timeline__icon {
+  background: #403027;
+  border-color: rgba(232, 216, 196, 0.28);
+  color: var(--cream);
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+html.theme-dim .timeline__connector {
+  color: var(--ink-soft);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .journey {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .timeline {
+    max-width: 100%;
+  }
+
+  .timeline__icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .timeline__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .timeline__label {
+    max-width: 95px;
+    font-size: 0.68rem;
+  }
+
+  .timeline__sub {
+    max-width: 100px;
+    font-size: 0.65rem;
+  }
+
+  .timeline__connector {
+    top: 19px;
+    left: calc(50% + 20px);
+    width: calc(100% - 40px);
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1.5rem;
+  }
+
+  .timeline__connector {
+    display: none;
+  }
+
+  .journey__note {
+    margin-top: 1.5rem;
+  }
+}
+
+/* =========================================================
+   CERTIFICATIONS — SCRAPBOOK STYLE
+   ========================================================= */
+
+.certifications {
+  position: relative;
+  padding: 1.8rem 1rem 2.5rem;
+
+  /* keeps the section compact like the reference */
+  width: 420px;
+  margin: 0 auto;
+}
+
+
+/* ---------- Heading ---------- */
+
+.certifications > .section-title {
+  width: fit-content;
+
+  margin: 0 0 1rem;
+
+  font-family: var(--font-hand);
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 500;
+  line-height: 1;
+
+  color: var(--ink);
+
+  transform: rotate(-1deg);
+}
+
+.certifications > .section-title span {
+  display: inline-block;
+
+  margin-left: 0.15rem;
+
+  color: var(--blush);
+  font-size: 0.75em;
+
+  transform: rotate(7deg);
+}
+
+
+/* =========================================================
+   CERTIFICATE LIST
+   ========================================================= */
+
+.certifications__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+
+/* ---------- Individual certificate ---------- */
+
+.certifications__card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+
+  min-height: 78px;
+
+  padding: 0.7rem 0.75rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.25),
+      transparent 45%
+    ),
+    #EADBC7;
+
+  border: 1px solid rgba(61, 48, 38, 0.08);
+
+  box-shadow:
+    0 5px 12px -8px rgba(61, 48, 38, 0.38),
+    0 2px 4px rgba(61, 48, 38, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* Slight scrapbook imperfection */
+
+.certifications__card--left {
+  transform: rotate(-0.6deg);
+}
+
+.certifications__card--right {
+  transform: rotate(0.6deg);
+}
+
+.certifications__card:hover {
+  transform: translateY(-2px) rotate(0deg);
+
+  box-shadow:
+    0 9px 16px -8px rgba(61, 48, 38, 0.4),
+    0 3px 6px rgba(61, 48, 38, 0.1);
+}
+
+
+/* ---------- Small tape ---------- */
+
+.certifications__card::before {
+  content: '';
+
+  position: absolute;
+
+  top: -5px;
+  right: 20px;
+
+  width: 48px;
+  height: 11px;
+
+  background: rgba(205, 184, 151, 0.5);
+
+  transform: rotate(3deg);
+}
+
+
+/* =========================================================
+   CERTIFICATE ICON
+   ========================================================= */
+
+.certifications__icon {
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(61, 48, 38, 0.35);
+
+  border-radius: 4px;
+
+  background: rgba(243, 232, 215, 0.55);
+
+  color: var(--navy);
+
+  position: relative;
+
+  transform: rotate(-2deg);
+}
+
+
+/* little seal inside */
+
+.certifications__icon::after {
+  content: '';
+
+  position: absolute;
+
+  width: 14px;
+  height: 14px;
+
+  bottom: 4px;
+  left: 9px;
+
+  border: 1px solid var(--sage);
+
+  border-radius: 50%;
+
+  opacity: 0.75;
+}
+
+.certifications__icon span {
+  position: relative;
+  z-index: 2;
+
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+
+/* =========================================================
+   CERTIFICATE CONTENT
+   ========================================================= */
+
+.certifications__content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.certifications__content h3 {
+  margin: 0;
+
+  font-family: var(--font-sans);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  color: var(--ink);
+}
+
+
+/* ---------- Issuer ---------- */
+
+.certifications__issuer {
+  margin: 0.1rem 0 0.35rem;
+
+  font-size: 0.62rem;
+  line-height: 1.3;
+
+  color: var(--ink-soft);
+}
+
+
+/* ---------- Certificate button ---------- */
+
+.certifications__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  padding: 0.2rem 0.55rem;
+
+  border: 1px solid rgba(61, 48, 38, 0.28);
+  border-radius: 999px;
+
+  background: rgba(243, 232, 215, 0.45);
+
+  color: var(--navy);
+
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.certifications__link:hover {
+  background: var(--beige);
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   DECORATIVE DOODLE
+   ========================================================= */
+
+.certifications__doodle {
+  position: absolute;
+
+  right: -5px;
+  bottom: 4px;
+
+  width: 48px;
+  height: 48px;
+
+  opacity: 0.7;
+
+  transform: rotate(-10deg);
+}
+
+.certifications__doodle::before,
+.certifications__doodle::after,
+.certifications__doodle span {
+  content: '';
+
+  position: absolute;
+
+  display: block;
+
+  width: 1px;
+
+  background: var(--sage);
+
+  transform-origin: bottom;
+}
+
+.certifications__doodle::before {
+  height: 38px;
+  left: 23px;
+  bottom: 0;
+  transform: rotate(25deg);
+}
+
+.certifications__doodle::after {
+  height: 25px;
+  left: 23px;
+  bottom: 12px;
+  transform: rotate(-30deg);
+}
+
+.certifications__doodle span:nth-child(1) {
+  height: 17px;
+  left: 13px;
+  bottom: 7px;
+  transform: rotate(-55deg);
+}
+
+.certifications__doodle span:nth-child(2) {
+  height: 15px;
+  left: 32px;
+  bottom: 15px;
+  transform: rotate(58deg);
+}
+
+.certifications__doodle span:nth-child(3) {
+  height: 11px;
+  left: 38px;
+  bottom: 3px;
+  transform: rotate(70deg);
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+html.theme-dim .certifications__card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.04),
+      transparent 45%
+    ),
+    #403027;
+
+  border-color: rgba(232, 216, 196, 0.08);
+
+  box-shadow:
+    0 7px 16px -8px rgba(0, 0, 0, 0.65);
+}
+
+html.theme-dim .certifications__icon {
+  background: rgba(24, 18, 15, 0.3);
+
+  border-color: rgba(232, 216, 196, 0.25);
+
+  color: var(--cream);
+}
+
+html.theme-dim .certifications__link {
+  background: rgba(232, 216, 196, 0.06);
+
+  border-color: rgba(232, 216, 196, 0.25);
+
+  color: var(--cream);
+}
+
+html.theme-dim .certifications__link:hover {
+  background: #514036;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .certifications {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .certifications__doodle {
+    display: none;
+  }
+}
+/* =========================================================
+   GLOBAL SCRAPBOOK DECORATIONS
+   ========================================================= */
+
+.board {
+  position: relative;
+}
+
+
+/* The decoration layer itself doesn't affect layout */
+
+.board__decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+
+/* Every decoration */
+
+.scrap-deco {
+  position: absolute;
+
+  color: var(--ink-soft);
+
+  opacity: 0.55;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LEAF CLUSTERS
+   ========================================================= */
+
+/* Top-left leafy corner */
+
+.scrap-deco--leaf-top {
+  top: 85px;
+  left: -8px;
+
+  width: 80px;
+  height: 100px;
+
+  color: var(--sage);
+
+  transform: rotate(-20deg);
+}
+
+.scrap-deco--leaf-top .doodle {
+  position: absolute;
+
+  width: 38px;
+  height: 38px;
+}
+
+.scrap-deco--leaf-top .doodle:nth-child(1) {
+  top: 5px;
+  left: 25px;
+  transform: rotate(-30deg);
+}
+
+.scrap-deco--leaf-top .doodle:nth-child(2) {
+  top: 30px;
+  left: 5px;
+  transform: rotate(-65deg);
+}
+
+.scrap-deco--leaf-top .doodle:nth-child(3) {
+  top: 52px;
+  left: 35px;
+  transform: rotate(20deg);
+}
+
+
+/* Around projects */
+
+.scrap-deco--leaf-projects {
+  top: 850px;
+  left: 8px;
+
+  width: 46px;
+  height: 46px;
+
+  color: var(--sage);
+
+  transform: rotate(-35deg);
+}
+
+
+/* Skills */
+
+.scrap-deco--leaf-skills {
+  top: 1260px;
+  right: 20px;
+
+  width: 55px;
+  height: 55px;
+
+  color: var(--sage);
+
+  transform: rotate(35deg);
+}
+
+
+/* Journey */
+
+.scrap-deco--leaf-journey {
+  top: 1960px;
+  left: 18px;
+
+  width: 58px;
+  height: 58px;
+
+  color: var(--sage);
+
+  transform: rotate(-20deg);
+}
+
+
+/* Contact */
+
+.scrap-deco--leaf-contact {
+  top: 2320px;
+  right: 18px;
+
+  width: 65px;
+  height: 65px;
+
+  color: var(--sage);
+
+  transform: rotate(25deg);
+}
+
+
+/* =========================================================
+   BOOK STACK
+   ========================================================= */
+
+.scrap-deco--books {
+  top: 260px;
+  left: 5px;
+
+  width: 70px;
+  height: 85px;
+
+  color: var(--ink-soft);
+
+  transform: rotate(-7deg);
+}
+
+.scrap-deco--books .doodle {
+  position: absolute;
+
+  width: 55px;
+  height: 35px;
+
+  opacity: 0.8;
+}
+
+.scrap-deco--books .doodle:nth-child(1) {
+  top: 42px;
+  left: 0;
+
+  transform: rotate(-8deg);
+}
+
+.scrap-deco--books .doodle:nth-child(2) {
+  top: 24px;
+  left: 8px;
+
+  transform: rotate(5deg);
+}
+
+.scrap-deco--books .doodle:nth-child(3) {
+  top: 5px;
+  left: 15px;
+
+  transform: rotate(-4deg);
+}
+
+
+/* =========================================================
+   FLOWERS
+   ========================================================= */
+
+.scrap-deco--flower-about {
+  top: 430px;
+  right: 28px;
+
+  width: 38px;
+  height: 38px;
+
+  color: var(--blush);
+
+  transform: rotate(12deg);
+}
+
+
+.scrap-deco--flower-skills {
+  top: 1120px;
+  left: 18px;
+
+  width: 34px;
+  height: 34px;
+
+  color: var(--blush);
+
+  transform: rotate(-15deg);
+}
+
+
+.scrap-deco--flower-journey {
+  top: 1880px;
+  right: 25px;
+
+  width: 38px;
+  height: 38px;
+
+  color: var(--blush);
+
+  transform: rotate(10deg);
+}
+
+
+/* =========================================================
+   PAINTBRUSH
+   ========================================================= */
+
+.scrap-deco--brush {
+  top: 520px;
+  right: 12px;
+
+  width: 55px;
+  height: 55px;
+
+  color: var(--ink-soft);
+
+  transform: rotate(20deg);
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+.scrap-deco--laptop {
+  top: 1510px;
+  right: 20px;
+
+  width: 62px;
+  height: 62px;
+
+  color: var(--ink-soft);
+
+  transform: rotate(-7deg);
+}
+
+
+/* =========================================================
+   PAPERCLIP
+   ========================================================= */
+
+.scrap-deco--paperclip {
+  top: 2050px;
+  right: 35px;
+
+  width: 38px;
+  height: 38px;
+
+  color: var(--ink-soft);
+
+  transform: rotate(20deg);
+
+  opacity: 0.45;
+}
+
+
+/* =========================================================
+   STARS
+   ========================================================= */
+
+.scrap-deco--star-top {
+  top: 145px;
+  right: 18px;
+
+  width: 28px;
+  height: 28px;
+
+  color: var(--blush);
+
+  transform: rotate(12deg);
+}
+
+
+.scrap-deco--star-projects {
+  top: 720px;
+  left: 24px;
+
+  width: 24px;
+  height: 24px;
+
+  color: var(--blush);
+
+  transform: rotate(-10deg);
+}
+
+
+.scrap-deco--star-coding {
+  top: 1440px;
+  left: 25px;
+
+  width: 26px;
+  height: 26px;
+
+  color: var(--blush);
+
+  transform: rotate(8deg);
+}
+
+
+.scrap-deco--star-contact {
+  top: 2250px;
+  left: 25px;
+
+  width: 24px;
+  height: 24px;
+
+  color: var(--blush);
+
+  transform: rotate(-12deg);
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+html.theme-dim .scrap-deco {
+  opacity: 0.42;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .scrap-deco--books,
+  .scrap-deco--brush,
+  .scrap-deco--laptop {
+    opacity: 0.35;
+  }
+
+  .scrap-deco--leaf-top {
+    left: -25px;
+  }
+
+  .scrap-deco--books {
+    left: -20px;
+  }
+
+  .scrap-deco--flower-about {
+    right: 5px;
+  }
+
+  .scrap-deco--leaf-projects {
+    left: -5px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  /* Keep the scrapbook feel but reduce clutter */
+  .scrap-deco--books,
+  .scrap-deco--brush,
+  .scrap-deco--laptop,
+  .scrap-deco--paperclip {
+    display: none;
+  }
+
+  .scrap-deco--leaf-top {
+    top: 75px;
+    left: -35px;
+    opacity: 0.4;
+  }
+
+  .scrap-deco--star-top {
+    right: 8px;
+  }
+
+  .scrap-deco--leaf-projects {
+    left: -15px;
+    opacity: 0.4;
+  }
+
+  .scrap-deco--leaf-skills {
+    right: -12px;
+    opacity: 0.4;
+  }
+
+  .scrap-deco--flower-about,
+  .scrap-deco--flower-skills,
+  .scrap-deco--flower-journey {
+    opacity: 0.4;
+  }
+
+  .scrap-deco--leaf-contact {
+    right: -15px;
+    opacity: 0.4;
+  }
+}
+
+/* =========================================================
+   SKILLS — LARGE SCRAPBOOK PAPER
+   ========================================================= */
+
+.skills {
+  position: relative;
+  padding: 2rem 1rem 3rem;
+}
+
+
+/* ---------- Main paper ---------- */
+
+.skills__paper {
+  position: relative;
+
+  max-width: 1120px;
+  margin: 0 auto;
+
+  padding: 2.4rem 2.5rem 2.7rem;
+
+  background: #EADBC7;
+
+  color: #3D3026;
+
+  border: 1px solid rgba(61, 48, 38, 0.12);
+
+  box-shadow:
+    0 12px 26px -14px rgba(70, 54, 42, 0.45),
+    0 3px 8px rgba(70, 54, 42, 0.12);
+
+  transform: rotate(-0.15deg);
+
+  overflow: visible;
+}
+
+
+/* Slight paper texture / irregular inner edge */
+
+.skills__paper::before {
+  content: '';
+
+  position: absolute;
+  inset: 7px;
+
+  border: 1px dashed rgba(61, 48, 38, 0.09);
+
+  pointer-events: none;
+}
+
+
+/* ---------- Tape ---------- */
+
+.skills__tape {
+  position: absolute;
+
+  z-index: 5;
+
+  width: 105px;
+  height: 25px;
+
+  background: rgba(218, 199, 165, 0.72);
+
+  box-shadow:
+    0 1px 3px rgba(60, 45, 35, 0.12);
+
+  opacity: 0.9;
+}
+
+.skills__tape--left {
+  top: -9px;
+  left: 120px;
+}
+
+.skills__tape--right {
+  top: -8px;
+  right: 115px;
+}
+
+
+/* ---------- Heading ---------- */
+
+.skills__heading {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 1.5rem;
+}
+
+
+.skills__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  margin: 0;
+
+  font-family: var(--font-hand);
+
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  color: #3D3026;
+}
+
+
+.skills__title .doodle {
+  width: 20px;
+  height: 20px;
+
+  color: var(--blush);
+
+  transform: rotate(8deg);
+}
+
+
+/* Hand-drawn-looking underline */
+
+.skills__underline {
+  width: 108px;
+  height: 2px;
+
+  margin-top: 0.35rem;
+
+  background: #3D3026;
+
+  border-radius: 50%;
+
+  transform: rotate(-1.5deg);
+
+  opacity: 0.75;
+}
+
+
+.skills__subtitle {
+  margin: 0.45rem 0 0;
+
+  font-size: 1.15rem;
+
+  color: #6B5A4A;
+}
+
+
+/* ---------- Skill blocks ---------- */
+
+.skills__grid {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 0.9rem;
+
+  padding: 0.3rem 0.5rem;
+}
+
+
+/* Make the individual blocks clean */
+
+.skills__note {
+  min-height: 105px;
+
+  padding: 1rem 1.1rem;
+
+  border: 1px solid rgba(61, 48, 38, 0.08);
+
+  box-shadow:
+    0 5px 12px -8px rgba(70, 54, 42, 0.3);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.skills__note:hover {
+  transform: translateY(-2px) rotate(0deg);
+
+  box-shadow:
+    0 8px 16px -9px rgba(70, 54, 42, 0.4);
+}
+
+
+/* Category heading */
+
+.skills__note h3 {
+  margin: 0 0 0.45rem;
+
+  font-family: var(--font-hand);
+
+  font-size: 1.25rem;
+
+  font-weight: 600;
+
+  color: #3D3026;
+}
+
+
+/* Skill names */
+
+.skills__note .tag-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.25rem 0.7rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+
+.skills__note .tag-list li {
+  font-family: var(--font-sans);
+
+  font-size: 0.72rem;
+
+  color: #5B4A3B;
+
+  white-space: nowrap;
+}
+
+
+/* Tiny handwritten separator feeling */
+
+.skills__note .tag-list li:not(:last-child)::after {
+  content: '';
+
+  display: inline-block;
+
+  width: 2px;
+  height: 2px;
+
+  margin-left: 0.7rem;
+
+  vertical-align: middle;
+
+  border-radius: 50%;
+
+  background: #9A8570;
+}
+
+
+/* ---------- Botanical decorations ---------- */
+
+.skills__plant {
+  position: absolute;
+
+  z-index: 3;
+
+  color: var(--sage);
+
+  pointer-events: none;
+}
+
+
+/* Top-right little plant */
+
+.skills__plant--top {
+  top: 25px;
+  right: 25px;
+
+  width: 82px;
+  height: 75px;
+
+  transform: rotate(12deg);
+}
+
+
+.skills__plant--top .doodle {
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+}
+
+
+.skills__plant--top .doodle:nth-child(1) {
+  right: 30px;
+  top: 20px;
+
+  transform: rotate(-25deg);
+}
+
+
+.skills__plant--top .doodle:nth-child(2) {
+  right: 5px;
+  top: 5px;
+
+  transform: rotate(20deg);
+}
+
+
+.skills__plant--top .doodle:nth-child(3) {
+  right: 12px;
+  top: 35px;
+
+  transform: rotate(45deg);
+}
+
+
+.skills__plant--top .doodle:nth-child(4) {
+  right: 42px;
+  top: 0;
+
+  width: 23px;
+  height: 23px;
+
+  color: var(--blush);
+}
+
+
+/* Bottom-left plant */
+
+.skills__plant--bottom {
+  bottom: 18px;
+  left: 22px;
+
+  width: 80px;
+  height: 70px;
+
+  transform: rotate(-18deg);
+}
+
+
+.skills__plant--bottom .doodle {
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+}
+
+
+.skills__plant--bottom .doodle:nth-child(1) {
+  left: 25px;
+  bottom: 25px;
+
+  transform: rotate(-25deg);
+}
+
+
+.skills__plant--bottom .doodle:nth-child(2) {
+  left: 5px;
+  bottom: 5px;
+
+  transform: rotate(-55deg);
+}
+
+
+.skills__plant--bottom .doodle:nth-child(3) {
+  left: 45px;
+  bottom: 35px;
+
+  width: 23px;
+  height: 23px;
+
+  color: var(--blush);
+}
+
+
+/* ---------- Corner star ---------- */
+
+.skills__corner-star {
+  position: absolute;
+
+  right: 28px;
+  bottom: 25px;
+
+  width: 22px;
+  height: 22px;
+
+  color: var(--blush);
+
+  transform: rotate(-12deg);
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+html.theme-dim .skills__paper {
+  background: #403027;
+
+  color: #E8D8C4;
+
+  border-color: rgba(232, 216, 196, 0.08);
+
+  box-shadow:
+    0 14px 28px -13px rgba(0, 0, 0, 0.65),
+    0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+html.theme-dim .skills__paper::before {
+  border-color: rgba(232, 216, 196, 0.08);
+}
+
+
+html.theme-dim .skills__title,
+html.theme-dim .skills__note h3 {
+  color: #E8D8C4;
+}
+
+
+html.theme-dim .skills__underline {
+  background: #E8D8C4;
+}
+
+
+html.theme-dim .skills__subtitle {
+  color: #B9A493;
+}
+
+
+html.theme-dim .skills__note {
+  border-color: rgba(232, 216, 196, 0.08);
+
+  box-shadow:
+    0 6px 14px -9px rgba(0, 0, 0, 0.55);
+}
+
+
+html.theme-dim .skills__note .tag-list li {
+  color: #CBB9A7;
+}
+
+
+html.theme-dim .skills__tape {
+  background: rgba(157, 132, 102, 0.45);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .skills__paper {
+    padding: 2rem 1.5rem 2.4rem;
+  }
+
+  .skills__grid {
+    gap: 0.7rem;
+  }
+
+  .skills__plant--top {
+    right: 12px;
+  }
+
+  .skills__plant--bottom {
+    left: 10px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .skills {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .skills__paper {
+    padding: 1.8rem 1rem 2.3rem;
+  }
+
+  .skills__grid {
+    grid-template-columns: 1fr;
+
+    padding: 0;
+  }
+
+  .skills__note {
+    min-height: auto;
+  }
+
+  .skills__plant--top {
+    transform: scale(0.75) rotate(12deg);
+    transform-origin: top right;
+  }
+
+  .skills__plant--bottom {
+    transform: scale(0.75) rotate(-18deg);
+    transform-origin: bottom left;
+  }
+
+  .skills__tape--left {
+    left: 45px;
+  }
+
+  .skills__tape--right {
+    right: 40px;
+  }
+}
+
+/* =========================================================
+   CODING — SCRAPBOOK REDESIGN
+   ========================================================= */
+
+.coding {
+  position: relative;
+
+  padding: 2rem 1rem 3rem;
+}
+
+
+/* =========================================================
+   MAIN TORN PAPER
+   ========================================================= */
+
+.coding__paper {
+  position: relative;
+
+  max-width: 1120px;
+  min-height: 340px;
+
+  margin: 0 auto;
+
+  padding: 2.4rem 3rem 2.8rem;
+
+  /* Warm deep brown — matches the main scrapbook theme */
+  background: #5A4636;
+
+  color: #F3E8D7;
+
+  overflow: visible;
+
+  box-shadow:
+    0 12px 26px -14px rgba(70, 54, 42, 0.55),
+    0 3px 8px rgba(70, 54, 42, 0.22);
+
+  transform: rotate(0.15deg);
+}
+
+
+/* Slight inner hand-drawn border */
+
+.coding__paper::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 10px;
+
+  border: 1px dashed rgba(243, 232, 215, 0.18);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TAPE
+   ========================================================= */
+
+.coding__tape {
+  position: absolute;
+
+  z-index: 5;
+
+  width: 105px;
+  height: 25px;
+
+  /* Warm kraft-paper tape */
+  background: rgba(201, 173, 140, 0.72);
+
+  box-shadow:
+    0 1px 4px rgba(70, 54, 42, 0.18);
+
+  opacity: 0.9;
+}
+
+
+.coding__tape--left {
+  top: -9px;
+  left: 105px;
+}
+
+
+.coding__tape--right {
+  top: -8px;
+  right: 115px;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.coding__heading {
+  position: relative;
+
+  z-index: 2;
+
+  margin-bottom: 2rem;
+}
+
+
+.coding__title {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.45rem;
+
+  margin: 0;
+
+  font-family: var(--font-hand);
+
+  font-size: clamp(2rem, 3.3vw, 2.65rem);
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  color: #F3E8D7;
+}
+
+
+.coding__title .doodle {
+  width: 21px;
+  height: 21px;
+
+  /* Muted blush accent */
+  color: #C9907E;
+
+  transform: rotate(8deg);
+}
+
+
+/* Hand-drawn underline */
+
+.coding__underline {
+  width: 105px;
+
+  height: 2px;
+
+  margin-top: 0.35rem;
+
+  background: #F3E8D7;
+
+  border-radius: 50%;
+
+  transform: rotate(-1.5deg);
+
+  opacity: 0.75;
+}
+
+
+.coding__subtitle {
+  margin: 0.5rem 0 0;
+
+  font-size: 1.05rem;
+
+  /* Warm muted cream */
+  color: #D9C7B2;
+}
+
+
+/* =========================================================
+   CODING CONTENT
+   ========================================================= */
+
+.coding__content {
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1px 1fr;
+
+  align-items: center;
+
+  max-width: 780px;
+
+  margin: 0 auto;
+
+  padding: 0.5rem 7rem 0.5rem 0.5rem;
+}
+
+
+/* Individual stat */
+
+.coding__stat {
+  text-align: center;
+
+  padding: 0.5rem 2rem 1rem;
+}
+
+
+/* Big number */
+
+.coding__number {
+  margin: 0;
+
+  font-family: var(--font-sans);
+
+  font-size: clamp(3rem, 5vw, 4.3rem);
+
+  font-weight: 400;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.04em;
+
+  color: #F3E8D7;
+}
+
+
+/* Label */
+
+.coding__label {
+  max-width: 180px;
+
+  margin: 0.75rem auto 1.1rem;
+
+  font-family: var(--font-hand);
+
+  font-size: 1.05rem;
+
+  line-height: 1.25;
+
+  /* Soft beige/cream */
+  color: #D9C7B2;
+}
+
+
+/* Divider between GFG and LeetCode */
+
+.coding__divider {
+  width: 1px;
+
+  height: 125px;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(243, 232, 215, 0.38) 0 7px,
+      transparent 7px 13px
+    );
+
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   PROFILE BUTTON
+   ========================================================= */
+
+.coding__button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.45rem;
+
+  padding: 0.48rem 0.9rem;
+
+  border: 1px solid rgba(243, 232, 215, 0.42);
+
+  border-radius: 999px;
+
+  background: rgba(243, 232, 215, 0.05);
+
+  color: #F3E8D7;
+
+  font-family: var(--font-sans);
+
+  font-size: 0.7rem;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.coding__button:hover {
+  background: rgba(243, 232, 215, 0.12);
+
+  border-color: rgba(243, 232, 215, 0.7);
+
+  transform: translateY(-2px);
+}
+
+
+.coding__button span {
+  font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   LAPTOP DOODLE
+   ========================================================= */
+
+.coding__laptop {
+  position: absolute;
+
+  z-index: 3;
+
+  right: 42px;
+  bottom: 48px;
+
+  width: 78px;
+  height: 78px;
+
+  /* Warm beige instead of grey-blue */
+  color: #C9AD8C;
+
+  transform: rotate(-6deg);
+
+  opacity: 0.8;
+}
+
+
+/* =========================================================
+   LEAF / PLANT
+   ========================================================= */
+
+.coding__plant {
+  position: absolute;
+
+  z-index: 3;
+
+  right: 12px;
+  bottom: 35px;
+
+  width: 90px;
+  height: 110px;
+
+  /* Existing scrapbook sage */
+  color: #89967A;
+
+  transform: rotate(8deg);
+
+  pointer-events: none;
+}
+
+
+.coding__plant .doodle {
+  position: absolute;
+
+  width: 38px;
+  height: 38px;
+}
+
+
+.coding__plant .doodle:nth-child(1) {
+  right: 25px;
+  bottom: 48px;
+
+  transform: rotate(-30deg);
+}
+
+
+.coding__plant .doodle:nth-child(2) {
+  right: 3px;
+  bottom: 20px;
+
+  transform: rotate(18deg);
+}
+
+
+.coding__plant .doodle:nth-child(3) {
+  right: 40px;
+  bottom: 5px;
+
+  transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   SMALL DOODLES
+   ========================================================= */
+
+.coding__corner-star {
+  position: absolute;
+
+  top: 35px;
+  right: 40px;
+
+  width: 20px;
+  height: 20px;
+
+  /* Same blush accent as the rest of the portfolio */
+  color: #C9907E;
+
+  transform: rotate(-10deg);
+
+  opacity: 0.75;
+}
+
+
+.coding__arrow {
+  position: absolute;
+
+  left: 43%;
+  bottom: 22px;
+
+  width: 55px;
+
+  /* Warm beige doodle */
+  color: #C9AD8C;
+
+  opacity: 0.55;
+
+  transform: rotate(8deg);
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+html.theme-dim .coding__paper {
+  /* Deep espresso brown */
+  background: #241B17;
+
+  color: #E8D8C4;
+
+  box-shadow:
+    0 14px 30px -13px rgba(0, 0, 0, 0.75),
+    0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+html.theme-dim .coding__paper::before {
+  border-color: rgba(232, 216, 196, 0.11);
+}
+
+
+html.theme-dim .coding__title,
+html.theme-dim .coding__number {
+  color: #E8D8C4;
+}
+
+
+html.theme-dim .coding__underline {
+  background: #E8D8C4;
+}
+
+
+html.theme-dim .coding__subtitle {
+  color: #B9A493;
+}
+
+
+html.theme-dim .coding__label {
+  color: #C7B5A4;
+}
+
+
+html.theme-dim .coding__button {
+  color: #E8D8C4;
+
+  border-color: rgba(232, 216, 196, 0.35);
+}
+
+
+html.theme-dim .coding__button:hover {
+  background: rgba(232, 216, 196, 0.08);
+
+  border-color: rgba(232, 216, 196, 0.65);
+}
+
+
+html.theme-dim .coding__tape {
+  /* Darker kraft tape */
+  background: rgba(180, 148, 112, 0.42);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+  .coding__paper {
+    padding: 2.2rem 1.8rem 2.5rem;
+  }
+
+  .coding__content {
+    padding-right: 5rem;
+  }
+
+  .coding__laptop {
+    right: 18px;
+
+    width: 62px;
+    height: 62px;
+  }
+
+  .coding__plant {
+    right: -2px;
+
+    transform: scale(0.8) rotate(8deg);
+    transform-origin: bottom right;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .coding {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .coding__paper {
+    padding: 1.8rem 1rem 2.3rem;
+  }
+
+  .coding__content {
+    grid-template-columns: 1fr;
+
+    padding: 0;
+
+    gap: 1.3rem;
+  }
+
+  .coding__divider {
+    width: 65%;
+
+    height: 1px;
+
+    margin: 0 auto;
+
+    background:
+      repeating-linear-gradient(
+        to right,
+        rgba(243, 232, 215, 0.35) 0 7px,
+        transparent 7px 13px
+      );
+  }
+
+  .coding__stat {
+    padding: 0.5rem 1rem;
+  }
+
+  .coding__number {
+    font-size: 3.2rem;
+  }
+
+  .coding__laptop {
+    right: 12px;
+    bottom: 15px;
+
+    width: 48px;
+    height: 48px;
+  }
+
+  .coding__plant {
+    right: -12px;
+    bottom: 8px;
+
+    transform: scale(0.55) rotate(8deg);
+    transform-origin: bottom right;
+  }
+
+  .coding__arrow {
+    display: none;
+  }
+
+  .coding__corner-star {
+    right: 18px;
+  }
+
+  .coding__tape--left {
+    left: 45px;
+  }
+
+  .coding__tape--right {
+    right: 40px;
+  }
+}
