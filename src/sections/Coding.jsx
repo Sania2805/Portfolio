@@ -5,7 +5,7 @@ export default function Coding() {
   const { gfg, leetcode } = profile.coding
 
   return (
-    <section className="coding section">
+    <section id="coding" className="coding section">
 
       <div className="coding__paper torn-paper">
 

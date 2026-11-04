@@ -2,7 +2,7 @@ import certifications from '../data/certifications.js'
 
 export default function Certifications() {
   return (
-    <section className="certifications section">
+    <section id="certifications" className="certifications section">
 
       <h2 className="section-title">
         Certifications

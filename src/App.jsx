@@ -10,6 +10,9 @@ import Certifications from './sections/Certifications.jsx'
 import Contact from './sections/Contact.jsx'
 import Footer from './sections/Footer.jsx'
 import Cursor from './components/Cursor.jsx'
+import StudioLoader from './components/StudioLoader.jsx'
+import StudioTerminal from './components/StudioTerminal.jsx'
+import { useEffect } from 'react'
 
 import {
   Book,
@@ -22,8 +25,21 @@ import {
 } from './components/Decor.jsx'
 
 export default function App() {
+  useEffect(() => {
+    const sections = document.querySelectorAll('main > section, main > div.section')
+    if (!('IntersectionObserver' in window)) return
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('section-in-view'); observer.unobserve(entry.target) }
+      })
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' })
+    sections.forEach(el => { el.classList.add('section-reveal'); observer.observe(el) })
+    return () => observer.disconnect()
+  }, [])
   return (
     <div className="board">
+      <StudioLoader />
+      <StudioTerminal />
       <Cursor />
       <Navbar />
 

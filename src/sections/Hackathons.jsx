@@ -4,7 +4,7 @@ import hackathons from '../data/hackathons.js'
 
 export default function Hackathons() {
   return (
-    <section className="hackathons section">
+    <section id="hackathons" className="hackathons section">
       <div className="hackathons__heading">
         <h2 className="section-title">
           Hackathons <span aria-hidden="true">✦</span>
