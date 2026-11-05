@@ -5207,3 +5207,225 @@ html.theme-dim .cursor__dot {
   opacity: 0;
   transform: translateY(-12px) rotate(-4deg);
 }
+/* ============================================================
+   MEMORY MATCH — VIBRANT SCRAPBOOK PALETTE
+   Scoped styles: do not affect the rest of the portfolio.
+   ============================================================ */
+.memory-section {
+  --memory-bg: #fff0d8;
+  --memory-ink: #3f2b2c;
+  --memory-muted: #70504b;
+  --memory-accent: #a94754;
+  --memory-accent-2: #bc603e;
+  --memory-border: #d19a79;
+  --memory-button: #a94754;
+  --memory-button-ink: #fff9f1;
+  --memory-card-back: #e9a9a1;
+  --memory-card-stripe: #f5c8b8;
+  --memory-card-front: #fffaf0;
+  --memory-card-ink: #4e3430;
+  --memory-matched: #d3e6bb;
+  --memory-matched-border: #668651;
+  position: relative;
+  padding: 50px 20px 85px;
+}
+
+.memory-paper {
+  width: min(100%, 700px);
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 45px);
+  background: var(--memory-bg);
+  border: 2px solid var(--memory-border);
+  box-shadow: 7px 9px 0 rgba(91, 65, 45, .15), 0 18px 35px rgba(91, 65, 45, .09);
+  text-align: center;
+  color: var(--memory-ink);
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+
+.memory-paper .section-title,
+.memory-paper h2,
+.memory-paper h3 {
+  color: var(--memory-ink);
+}
+
+.memory-paper .section-title {
+  margin: 0;
+  font-size: clamp(1.85rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.memory-paper .section-title span { color: var(--memory-accent); }
+
+.memory-eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-hand, cursive);
+  font-style: italic;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--memory-accent-2);
+}
+
+.memory-intro {
+  margin: 12px auto 22px;
+  max-width: 430px;
+  line-height: 1.65;
+  color: var(--memory-muted);
+}
+
+.memory-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--memory-ink);
+}
+
+.memory-reset {
+  border: 1.5px solid var(--memory-button);
+  background: var(--memory-button);
+  color: var(--memory-button-ink);
+  padding: 9px 17px;
+  border-radius: 25px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(70, 40, 35, .16);
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.memory-reset:hover {
+  background: var(--memory-accent-2);
+  border-color: var(--memory-accent-2);
+  transform: translateY(-2px);
+}
+
+.memory-reset:focus-visible,
+.memory-card:focus-visible {
+  outline: 3px solid var(--memory-accent);
+  outline-offset: 4px;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 2vw, 16px);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.memory-card {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 750px;
+  border-radius: 9px;
+}
+
+.memory-card:disabled { cursor: default; }
+
+.memory-card__inner {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .55s cubic-bezier(.2, .7, .2, 1);
+}
+
+.memory-card.is-flipped .memory-card__inner { transform: rotateY(180deg); }
+
+.memory-card__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 9px;
+  border: 2px solid var(--memory-border);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  box-shadow: 2px 4px 0 rgba(76, 54, 36, .18);
+}
+
+.memory-card__face small {
+  font-size: .7rem;
+  letter-spacing: .04em;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.memory-card__back {
+  background: repeating-linear-gradient(-35deg,
+    var(--memory-card-back), var(--memory-card-back) 10px,
+    var(--memory-card-stripe) 10px, var(--memory-card-stripe) 20px);
+  color: #663640;
+  border-color: #ac6370;
+}
+
+.memory-card__front {
+  transform: rotateY(180deg);
+  background: var(--memory-card-front);
+  color: var(--memory-card-ink);
+}
+
+.memory-card.is-matched .memory-card__front {
+  background: var(--memory-matched);
+  border-color: var(--memory-matched-border);
+  color: #2c4b31;
+}
+
+.memory-message {
+  min-height: 26px;
+  margin: 22px 0 0;
+  font-family: var(--font-hand, cursive);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--memory-accent);
+}
+
+/* Dark mode uses the portfolio's existing html.theme-dim toggle. */
+html.theme-dim .memory-section {
+  --memory-bg: #392923;
+  --memory-ink: #fff0dc;
+  --memory-muted: #e4c5ae;
+  --memory-accent: #ffb5a6;
+  --memory-accent-2: #f3b77e;
+  --memory-border: #986b59;
+  --memory-button: #e8a08c;
+  --memory-button-ink: #2b1b1a;
+  --memory-card-back: #a55c68;
+  --memory-card-stripe: #c77d7d;
+  --memory-card-front: #60463c;
+  --memory-card-ink: #fff1df;
+  --memory-matched: #45624c;
+  --memory-matched-border: #a8d29a;
+}
+
+html.theme-dim .memory-card__back { color: #fff2e9; border-color: #e7a1a6; }
+html.theme-dim .memory-card.is-matched .memory-card__front { color: #f4ffe9; }
+html.theme-dim .memory-paper { box-shadow: 7px 9px 0 rgba(0,0,0,.25), 0 18px 35px rgba(0,0,0,.2); }
+
+@media (max-width: 480px) {
+  .memory-section { padding-inline: 12px; }
+  .memory-paper { padding: 22px 14px; }
+  .memory-toolbar { gap: 10px; }
+  .memory-card__face small { font-size: .58rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memory-card__inner { transition: none; }
+}

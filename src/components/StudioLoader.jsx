@@ -76,7 +76,7 @@ export default function StudioLoader() {
     <div className={`studio-loader deck-loader ${leaving ? 'deck-loader--leaving' : ''}`} role="status" aria-label="Loading portfolio" aria-live="off">
       <div className="deck-loader__top">
         <span className="deck-loader__brand">✳ &nbsp; SANIA'S SCRAPBOOK</span>
-        <button type="button" onClick={close} aria-label="Skip intro">skip intro ↗</button>
+        <button type="button" onClick={close} aria-label="Skip intro">skip ↗</button>
       </div>
       <div className="deck-loader__stage">
         <p className="deck-loader__overline">a little peek behind the scenes</p>
