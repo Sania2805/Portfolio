@@ -4935,9 +4935,16 @@ html.theme-dim .cursor__dot {
 .about-editor__keyword{color:#e6a5b7}.about-editor__variable,.about-editor__boolean{color:#c1d4b2}.about-editor__property{color:#eac69d}.about-editor__string{color:#e1b5aa}.about-editor__cursor{color:#edc3a2;animation:editor-blink .75s steps(1) infinite}
 .about-editor__footer{display:flex;justify-content:space-between;gap:10px;background:#55474c;padding:7px 12px;color:#eee2db;font:9px ui-monospace,monospace}
 @keyframes editor-blink{50%{opacity:0}}
-.sticky-notes{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(14px,3vw,36px);padding:22px 16px 42px;max-width:950px;margin:0 auto 12px;isolation:isolate}
-.sticky-note{width:clamp(170px,22vw,218px);min-height:135px;padding:20px 16px 16px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;white-space:pre-line;position:relative;cursor:grab;touch-action:none;user-select:none;box-shadow:3px 7px 15px #3a2d2b23;font-family:var(--font-hand);font-size:clamp(19px,2.2vw,25px);line-height:1.08;color:#453c3a;transition:box-shadow .2s}
-.sticky-note:active{cursor:grabbing;z-index:4;box-shadow:8px 12px 22px #3a2d2b35}
+.sticky-notes{overflow: visible;
+  isolation: isolate;
+  position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(14px,3vw,36px);padding:22px 16px 42px;max-width:950px;margin:0 auto 12px;isolation:isolate}
+.sticky-note{ position: relative;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  z-index: 2;
+  width:clamp(170px,22vw,218px);min-height:135px;padding:20px 16px 16px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;white-space:pre-line;position:relative;cursor:grab;touch-action:none;user-select:none;box-shadow:3px 7px 15px #3a2d2b23;font-family:var(--font-hand);font-size:clamp(19px,2.2vw,25px);line-height:1.08;color:#453c3a;transition:box-shadow .2s}
+.sticky-note:active{cursor:grabbing;z-index:100;box-shadow:8px 12px 22px #3a2d2b35}
 .sticky-note--peach{background:#f2d6cd}.sticky-note--sage{background:#dbe6d4}.sticky-note--yellow{background:#f5e7bb}
 .sticky-note__pin{position:absolute;top:5px;left:50%;font:14px sans-serif;color:#c67e75;transform:translateX(-50%)}
 .sticky-note__icon{font-size:28px;color:#9c7c73}
@@ -5044,4 +5051,159 @@ html.theme-dim .cursor__dot {
 }
 @media (prefers-reduced-motion: reduce) {
   .motion-ready { opacity:1 !important; translate:none !important; rotate:none !important; scale:1 !important; filter:none !important; }
+}
+
+
+/* Sticky note placeholders preserve the original layout */
+.sticky-note-anchor {
+  width: clamp(170px, 22vw, 218px);
+  height: 135px;
+  flex-shrink: 0;
+}
+
+/* Portal is outside the animated sections */
+.sticky-notes-portal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Each note remains independently draggable */
+.sticky-notes-portal .sticky-note {
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  margin: 0;
+  animation: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.sticky-notes-portal .sticky-note:active {
+  cursor: grabbing;
+  box-shadow: 8px 14px 28px rgba(60, 40, 30, 0.3);
+}
+
+@media (max-width: 640px) {
+  .sticky-note-anchor {
+    width: 44%;
+    min-width: 145px;
+    height: 125px;
+  }
+}
+/* Keep navbar above draggable sticky notes */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+/* Sticky notes stay below navbar */
+.sticky-notes-portal {
+  z-index: 100;
+}
+
+/* Override inline z-index on notes */
+.sticky-notes-portal .sticky-note {
+  z-index: auto !important;
+}
+/* Tiny handwritten hint for first-time visitors */
+.sticky-notes-wrapper {
+  width: 100%;
+}
+
+.sticky-notes-hint {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  text-align: center;
+  margin: 0.6rem 0 0;
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .sticky-notes-hint {
+    font-size: 1rem;
+  }
+}
+/* Keep the notes in their original layout */
+.sticky-notes-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.sticky-notes-wrapper .sticky-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  position: relative;
+}
+
+/* Preserve space for each sticky note */
+.sticky-note-anchor {
+  width: clamp(170px, 22vw, 218px);
+  height: 135px;
+  flex-shrink: 0;
+}
+
+/* Make portal notes visible */
+.sticky-notes-portal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Notes can receive pointer events */
+.sticky-notes-portal .sticky-note {
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: none !important;
+  transition: box-shadow 0.2s ease;
+}
+
+/* Navbar stays above the notes */
+.navbar {
+  z-index: 10000;
+}
+/* Smooth disappearing hint */
+.sticky-notes-hint {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: 0.6rem 0 0;
+
+  opacity: 0.8;
+  transform: translateY(0) rotate(-2deg);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+  pointer-events: none;
+}
+
+.sticky-notes-hint--hidden {
+  opacity: 0;
+  transform: translateY(-12px) rotate(-4deg);
 }
