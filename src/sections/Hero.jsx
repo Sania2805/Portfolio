@@ -1,3 +1,4 @@
+import DrawnUnderline from '../components/DrawnUnderline.jsx'
 import ScrapCard from '../components/ScrapCard.jsx'
 import PolaroidFrame from '../components/PolaroidFrame.jsx'
 import { Star, Leaf, Book } from '../components/Decor.jsx'
@@ -17,6 +18,8 @@ export default function Hero() {
         <h1 className="hero__name">
           Sania Ghosh <span aria-hidden="true">♡</span>
         </h1>
+
+        <DrawnUnderline />
 
         <p className="hero__roles">
           BTech CSE Student · Data Scientist · ML Engineer · Web Developer

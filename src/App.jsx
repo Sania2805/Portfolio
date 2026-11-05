@@ -11,6 +11,7 @@ import Contact from './sections/Contact.jsx'
 import Footer from './sections/Footer.jsx'
 import Cursor from './components/Cursor.jsx'
 import StudioLoader from './components/StudioLoader.jsx'
+import StickyNotes from './components/StickyNotes.jsx'
 import StudioTerminal from './components/StudioTerminal.jsx'
 import { useEffect } from 'react'
 
@@ -26,16 +27,61 @@ import {
 
 export default function App() {
   useEffect(() => {
-    const sections = document.querySelectorAll('main > section, main > div.section')
-    if (!('IntersectionObserver' in window)) return
+    const main = document.querySelector('main')
+    if (!main) return
+
+    // Every section enters with an actual slide, not just an opacity change.
+    const sections = Array.from(main.querySelectorAll(':scope > section, :scope > div.section'))
+    const childrenSelector = [
+      '.about__card', '.exploring__card', '.projects__heading', '.projects__card',
+      '.skills__heading', '.skills__grid > *', '.coding__card', '.timeline__step',
+      '.certifications__card', '.contact__inner', '.sticky-note',
+      '.section-title', '.hero__card'
+    ].join(', ')
+    const motionNodes = Array.from(main.querySelectorAll(childrenSelector))
+    const targets = [...new Set([...sections, ...motionNodes])]
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reduce || !('IntersectionObserver' in window)) {
+      targets.forEach(el => el.classList.add('motion-visible'))
+      return
+    }
+
+    targets.forEach((el, i) => {
+      el.classList.add('motion-ready')
+      el.style.setProperty('--motion-delay', `${(i % 4) * 95}ms`)
+    })
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('section-in-view'); observer.unobserve(entry.target) }
+        if (entry.isIntersecting) {
+          entry.target.classList.add('motion-visible', 'section-in-view')
+          observer.unobserve(entry.target)
+        }
       })
-    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' })
-    sections.forEach(el => { el.classList.add('section-reveal'); observer.observe(el) })
-    return () => observer.disconnect()
+    }, { threshold: 0.08, rootMargin: '0px 0px -45px 0px' })
+    targets.forEach(el => observer.observe(el))
+
+    // Subtle movement of background doodles while the user scrolls.
+    let frame = 0
+    const onScroll = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(() => {
+        const offset = Math.min(window.scrollY, 2400)
+        document.documentElement.style.setProperty('--scroll-drift', `${offset * 0.055}px`)
+        frame = 0
+      })
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      if (frame) window.cancelAnimationFrame(frame)
+      targets.forEach(el => el.style.removeProperty('--motion-delay'))
+      document.documentElement.style.removeProperty('--scroll-drift')
+    }
   }, [])
+  
   return (
     <div className="board">
       <StudioLoader />
@@ -92,6 +138,7 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <StickyNotes />
         <Projects />
         <Skills />
         <Coding />

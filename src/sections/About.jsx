@@ -1,3 +1,4 @@
+import AboutEditor from '../components/AboutEditor.jsx'
 import ScrapCard from '../components/ScrapCard.jsx'
 import { Book, Paintbrush, Leaf, ArrowCurve } from '../components/Decor.jsx'
 
@@ -30,6 +31,8 @@ export default function About() {
           When I&apos;m not coding, you&apos;ll find me with a book, a
           paintbrush, or lost in some random curiosity.
         </p>
+
+        <AboutEditor />
 
         <p className="handwritten about__note">paint · read · repeat</p>
         <Leaf className="about__doodle about__doodle--leaf" />
