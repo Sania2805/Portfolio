@@ -5742,3 +5742,34 @@ html.theme-dim .skills-vend__tray { background: #3e3028; border-color: #92715e; 
 .skills-vend__intro p {
   margin: 0;
 }
+/* =========================================================
+   CODING PASSPORT — warm scrapbook paper, cocoa & vintage ink
+   ========================================================= */
+.coding-passport__scene{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:14px;padding:0 8px 8px}
+.coding-passport{position:relative;width:min(100%,760px);min-height:315px;perspective:1300px;filter:drop-shadow(9px 15px 9px rgba(24,14,9,.25))}
+.coding-passport__spread{display:grid;grid-template-columns:1fr 1fr;min-height:315px;border:9px solid #94715a;border-radius:10px 15px 15px 10px;overflow:hidden;background:#edddc7;box-shadow:inset 0 0 0 2px #bd9e7f;transform-origin:left center;transform:scaleX(.94);transition:transform .65s cubic-bezier(.2,.8,.25,1)}
+.coding-passport.is-open .coding-passport__spread{transform:scaleX(1)}
+.coding-passport__spread::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:12px;transform:translateX(-50%);background:linear-gradient(90deg,#ab8a6c,#e0c9a8 45%,#b39374);box-shadow:0 0 13px #66452d55;z-index:2;pointer-events:none}
+.coding-passport__cover{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;background:linear-gradient(125deg,#8a6852,#62483b 70%,#513b30);border:9px double #c2a17d;border-radius:11px 17px 17px 11px;color:#f5e8d5;transform-origin:left center;backface-visibility:hidden;transition:transform .95s cubic-bezier(.25,.7,.2,1),opacity .25s .7s;box-shadow:inset 0 0 0 2px #4f382c;text-align:center;pointer-events:none}
+.coding-passport.is-open .coding-passport__cover{transform:rotateY(-155deg);opacity:0}
+.coding-passport__cover>span:first-of-type{font-size:13px;letter-spacing:4px}.coding-passport__cover strong{font-family:var(--font-hand);font-size:clamp(34px,6vw,55px);line-height:1.1}.coding-passport__cover small{font-family:var(--font-hand);font-size:18px}.coding-passport__cover-star{font-size:32px!important;letter-spacing:0!important}.coding-passport__cover-emblem{font-size:33px}
+.coding-passport__page{position:relative;display:flex;flex-direction:column;align-items:center;min-width:0;padding:18px 20px 22px;color:#604a3b;background:repeating-linear-gradient(0deg,transparent,transparent 27px,#b9a38a25 28px),linear-gradient(115deg,#f5e9d5,#ead8bb);text-align:center}
+.coding-passport__page--leetcode{background:repeating-linear-gradient(0deg,transparent,transparent 27px,#b9a38a22 28px),linear-gradient(110deg,#e9d4b4,#f5e9d5)}
+.coding-passport__page-top{display:flex;width:100%;justify-content:space-between;gap:8px;font-size:9px;font-weight:700;letter-spacing:1.2px;color:#9c8068;border-bottom:1px dashed #bba58e;padding-bottom:8px}
+.coding-passport__page-heading{font-family:var(--font-hand);font-size:clamp(22px,3vw,30px);margin:10px 0 7px;color:#604a3b}
+.coding-passport__stamp{width:clamp(120px,19vw,162px);height:clamp(120px,19vw,162px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border:3px dashed #a46b5d;outline:2px solid #a46b5d;outline-offset:-10px;border-radius:50%;background:#b77e6b15;color:#925b50;cursor:pointer;transform:rotate(-11deg) scale(1);opacity:0;transition:filter .2s,box-shadow .2s;box-shadow:0 0 0 5px #b77e6b0c;font-family:var(--font-sans)}
+.coding-passport__page--leetcode .coding-passport__stamp{border-color:#7e7957;outline-color:#7e7957;background:#8c8c6114;color:#666747;transform:rotate(10deg)}
+.coding-passport__stamp.is-stamped{animation:passportStamp .6s cubic-bezier(.2,1.3,.3,1) var(--stamp-delay) both}
+.coding-passport__page--leetcode .coding-passport__stamp.is-stamped{animation-name:passportStampRight}
+.coding-passport__stamp:hover,.coding-passport__stamp.is-active{filter:brightness(.88);box-shadow:0 0 0 7px #ffffff50}
+.coding-passport__stamp-symbol{font-size:22px;line-height:1}.coding-passport__stamp strong{font-size:clamp(28px,4vw,39px);line-height:1.15}.coding-passport__stamp>span:last-child{font-size:9px;font-weight:800;letter-spacing:1px}
+.coding-passport__entry-foot{margin-top:12px;font-family:var(--font-hand);font-size:17px;color:#8b735e}
+.coding-passport__detail{margin-top:8px;display:flex;flex-direction:column;gap:4px;font-size:11px;animation:passportDetail .25s ease both}.coding-passport__detail a{color:#775440;font-weight:700;text-decoration:underline;text-underline-offset:3px}.coding-passport__detail a:hover{color:#a46b5d}
+.coding-passport__page-number{margin-top:auto;padding-top:8px;font-size:9px;letter-spacing:1px;color:#a18a75}
+.coding-passport__replay{border:1px solid #d9bfa2;background:#e9d8c1;color:#5a4636;padding:9px 21px;border-radius:99px;cursor:pointer;font-weight:600;box-shadow:0 3px 0 #aa8d72;transition:transform .2s}.coding-passport__replay:hover{transform:translateY(-2px)}.coding-passport__note{font-size:21px;color:#e7d5be;margin:0;text-align:center}
+@keyframes passportStamp{0%{opacity:0;transform:translateY(-70px) scale(1.7) rotate(0)}65%{opacity:1;transform:translateY(5px) scale(.92) rotate(-15deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(-11deg)}}
+@keyframes passportStampRight{0%{opacity:0;transform:translateY(-70px) scale(1.7) rotate(0)}65%{opacity:1;transform:translateY(5px) scale(.92) rotate(14deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(10deg)}}
+@keyframes passportDetail{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+html.theme-dim .coding-passport__replay{background:#bda58b;color:#2b211c;border-color:#d9c6ae}html.theme-dim .coding-passport__note{color:#d5c0a8}
+@media(max-width:600px){.coding-passport{min-height:265px}.coding-passport__spread{min-height:265px;border-width:5px}.coding-passport__page{padding:12px 7px 16px}.coding-passport__page-top{font-size:7px;letter-spacing:.3px}.coding-passport__page-heading{font-size:21px}.coding-passport__stamp{width:105px;height:105px;outline-offset:-7px;border-width:2px}.coding-passport__stamp strong{font-size:25px}.coding-passport__stamp-symbol{font-size:16px}.coding-passport__stamp>span:last-child{font-size:7px;letter-spacing:0}.coding-passport__entry-foot{font-size:14px}.coding-passport__detail{font-size:10px}.coding-passport__cover{border-width:6px}.coding-passport__spread::after{width:7px}}
+@media(prefers-reduced-motion:reduce){.coding-passport__cover{transition:none}.coding-passport__spread{transition:none}.coding-passport__stamp.is-stamped{animation:none;opacity:1}.coding-passport__detail{animation:none}}
