@@ -10,6 +10,7 @@ import Certifications from './sections/Certifications.jsx'
 import Contact from './sections/Contact.jsx'
 import Footer from './sections/Footer.jsx'
 import MemoryMatch from './sections/MemoryMatch.jsx'
+import PolaroidWall from './sections/PolaroidWall.jsx'
 import Cursor from './components/Cursor.jsx'
 import StudioLoader from './components/StudioLoader.jsx'
 import StickyNotes from './components/StickyNotes.jsx'
@@ -137,10 +138,13 @@ export default function App() {
       </div>
 
       <main>
+        
         <Hero />
+        <PolaroidWall />
         <About />
         <StickyNotes />
         <Projects />
+        
         <Skills />
         <Coding />
         <Journey />

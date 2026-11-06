@@ -5429,3 +5429,97 @@ html.theme-dim .memory-paper { box-shadow: 7px 9px 0 rgba(0,0,0,.25), 0 18px 35p
 @media (prefers-reduced-motion: reduce) {
   .memory-card__inner { transition: none; }
 }
+
+
+/* ============================================================
+   CONTINUOUS HANGING POLAROID WALL — no captions or controls
+   ============================================================ */
+.polaroid-wall {
+  --wall-photo-width: clamp(190px, 22vw, 270px);
+  --wall-gap: clamp(18px, 2.5vw, 32px);
+  position: relative;
+  width: 100%;
+  padding: 25px 0 55px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.polaroid-wall__viewport { width: 100%; overflow: hidden; }
+.polaroid-wall__track {
+  display: flex;
+  width: max-content;
+  animation: polaroid-wall-scroll 43s linear infinite;
+  will-change: transform;
+}
+.polaroid-wall__group { display: flex; flex: 0 0 auto; gap: var(--wall-gap); padding-right: var(--wall-gap); }
+.polaroid-wall__hanger {
+  position: relative;
+  width: var(--wall-photo-width);
+  flex: 0 0 var(--wall-photo-width);
+  padding-top: 65px;
+}
+.polaroid-wall__string {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1.5px;
+  height: 72px;
+  background: #95745c;
+  transform: translateX(-50%);
+}
+.polaroid-wall__clip {
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  z-index: 2;
+  width: 22px;
+  height: 19px;
+  border: 2px solid #85644c;
+  border-radius: 3px;
+  background: #c8a37b;
+  box-shadow: 1px 2px 3px rgba(42,26,18,.18);
+  transform: translateX(-50%);
+}
+.polaroid-wall__photo {
+  padding: 10px 10px 28px;
+  background: #fffaf1;
+  border: 1px solid #e7d6c3;
+  box-shadow: 0 8px 16px rgba(55,34,24,.2);
+  transform-origin: 50% 0;
+  animation: polaroid-wall-sway 4.8s ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay);
+}
+.polaroid-wall__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  background: #ead9c8;
+  user-select: none;
+}
+@keyframes polaroid-wall-scroll { to { transform: translateX(-50%); } }
+@keyframes polaroid-wall-sway {
+  from { transform: rotate(calc(var(--tilt) - 3deg)); }
+  to { transform: rotate(calc(var(--tilt) + 3deg)); }
+}
+.polaroid-wall:hover .polaroid-wall__track { animation-play-state: paused; }
+html.theme-dim .polaroid-wall__string { background: #c19c7c; }
+html.theme-dim .polaroid-wall__clip { background: #ac8162; border-color: #e3bea0; }
+html.theme-dim .polaroid-wall__photo { background: #eee0cf; border-color: #9c7b63; box-shadow: 0 9px 22px rgba(0,0,0,.45); }
+
+@media (max-width: 600px) {
+  .polaroid-wall {
+    --wall-photo-width: 210px;
+    --wall-gap: 18px;
+    padding-bottom: 36px;
+  }
+
+  .polaroid-wall__track {
+    animation-duration: 34s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroid-wall__track, .polaroid-wall__photo { animation: none; }
+  .polaroid-wall__viewport { overflow-x: auto; }
+}
