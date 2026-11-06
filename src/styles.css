@@ -5523,3 +5523,222 @@ html.theme-dim .polaroid-wall__photo { background: #eee0cf; border-color: #9c7b6
   .polaroid-wall__track, .polaroid-wall__photo { animation: none; }
   .polaroid-wall__viewport { overflow-x: auto; }
 }
+
+/* ============================================================
+   INTERACTIVE SCRAPBOOK SKILLS PINBOARD
+   ============================================================ */
+.skills__pinboard {
+  background-color: #b68b65;
+  background-image: radial-gradient(rgba(255,246,222,.26) 1px,transparent 1px),
+    repeating-linear-gradient(35deg,transparent 0 13px,rgba(83,48,30,.035) 13px 14px);
+  background-size: 13px 13px, 100% 100%;
+  border: 10px solid #e6c9a4;
+  outline: 1px solid #9c6e4e;
+  border-radius: 5px;
+  padding: 2.6rem 2.6rem 3.1rem;
+  box-shadow: inset 0 0 30px rgba(65,38,21,.17),0 16px 32px rgba(60,38,25,.16);
+}
+.skills__pinboard .skills__title { color: #fff8e9; text-shadow: 0 1px 2px rgba(57,31,20,.3); }
+.skills__pinboard .skills__subtitle { color: #fff2db; }
+.skills__pinboard .skills__underline { background: #fff3dc; }
+.skills__pinboard-hint {
+  font-family: var(--font-hand);
+  color: #fff6e8;
+  font-size: 1.18rem;
+  margin: .35rem 0 0;
+}
+.skills__pinboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  align-items: start;
+  gap: 2.4rem 1.8rem;
+  padding: 1.2rem .4rem .5rem;
+}
+.skills__pinned-note {
+  --note-angle: -3deg;
+  --note-bg: #fff0c9;
+  --note-ink: #49342d;
+  position: relative;
+  min-width: 0;
+  padding: 1.3rem 1rem 1rem;
+  background: var(--note-bg);
+  color: var(--note-ink);
+  box-shadow: 3px 7px 12px rgba(58,37,25,.25);
+  transform: rotate(var(--note-angle));
+  transform-origin: 50% 10px;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+  isolation: isolate;
+}
+.skills__pinned-note::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed rgba(92,55,42,.17);
+  pointer-events: none;
+}
+.skills__pinned-note--1 { --note-angle: 3deg; --note-bg: #f6c4bb; }
+.skills__pinned-note--2 { --note-angle: -2deg; --note-bg: #d8e4bc; }
+.skills__pinned-note--3 { --note-angle: 4deg; --note-bg: #d9d2ed; }
+.skills__pinned-note--4 { --note-angle: -4deg; --note-bg: #c3dfdf; grid-column: 2; }
+.skills__pinned-note:hover,
+.skills__pinned-note:focus-within,
+.skills__pinned-note.is-open {
+  transform: rotate(0deg) translateY(-7px);
+  box-shadow: 5px 13px 19px rgba(58,37,25,.32);
+  z-index: 3;
+}
+.skills__pushpin {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 27%,#ffe4c4 0 12%,#b94e48 34%,#762d35 80%);
+  border: 1px solid #71352d;
+  box-shadow: 1px 3px 3px rgba(54,28,22,.38);
+  z-index: 4;
+}
+.skills__note-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3rem;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: .45rem .2rem .25rem;
+  text-align: center;
+}
+.skills__note-icon { font-family: var(--font-hand); font-size: 1.7rem; color: #a04c58; line-height: 1; }
+.skills__note-name { font-family: var(--font-hand); font-size: clamp(1.4rem,2vw,1.8rem); font-weight: 700; line-height: 1.15; }
+.skills__note-instruction { font-family: var(--font-hand); font-size: 1rem; color: #76574e; }
+.skills__note-details { padding: .7rem .2rem .25rem; }
+.skills__note-details[hidden] { display: none; }
+.skills__pinboard-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; }
+.skills__pinboard-tags li {
+  padding: .28rem .6rem;
+  border-radius: 4px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(83,53,43,.14);
+  color: #49342d;
+  font-size: .77rem;
+  font-weight: 500;
+}
+html.theme-dim .skills__pinboard {
+  background-color: #604639;
+  background-image: radial-gradient(rgba(255,229,193,.15) 1px,transparent 1px),repeating-linear-gradient(35deg,transparent 0 13px,rgba(0,0,0,.04) 13px 14px);
+  border-color: #927055;
+  outline-color: #3d2a23;
+}
+html.theme-dim .skills__pinned-note { --note-bg: #e5c99c; --note-ink: #382821; }
+html.theme-dim .skills__pinned-note--1 { --note-bg: #d99c9a; }
+html.theme-dim .skills__pinned-note--2 { --note-bg: #b8c89d; }
+html.theme-dim .skills__pinned-note--3 { --note-bg: #b8afd2; }
+html.theme-dim .skills__pinned-note--4 { --note-bg: #9bc6c5; }
+html.theme-dim .skills__note-name { color: #382821; }
+html.theme-dim .skills__note-instruction { color: #65473b; }
+@media (max-width: 850px) {
+  .skills__pinboard-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .skills__pinned-note--4 { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  .skills__pinboard { padding: 2.4rem 1rem 2rem; border-width: 7px; }
+  .skills__pinboard-grid { gap: 1.8rem .8rem; padding: 1rem 0; }
+  .skills__pinned-note { padding: 1rem .45rem .7rem; }
+  .skills__note-name { font-size: 1.35rem; }
+  .skills__pinboard-tags li { font-size: .7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skills__pinned-note { transition: none; }
+}
+
+/* ===== SKILLS: INTERACTIVE SCRAPBOOK VENDING MACHINE ===== */
+.skills-vend-wrap { overflow: hidden; }
+.skills-vend { --vend-ink: #49372e; --vend-pink: #92715e; --vend-cream: #fff5e6; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 8px 12px 35px; color: var(--vend-ink); }
+.skills-vend__intro { text-align: center; }
+.skills-vend__eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .2em; color: #92715e; }
+.skills-vend__intro p { font-size: 14px; margin: 9px 0 0; color: #716d58; }
+.skills-vend__machine { width: min(100%, 520px); border: 8px solid #62483b; border-radius: 28px 28px 20px 20px; padding: 20px; background: linear-gradient(135deg,#b79a83,#92715e 70%,#80624f); box-shadow: 12px 16px 0 #62483b2b, inset 4px 4px 0 #e9d5bf, 0 15px 35px #62483b26; position: relative; }
+.skills-vend__top { font-family: var(--font-hand, cursive); font-size: clamp(23px,4vw,34px); letter-spacing: .07em; text-align: center; color: #fff8e8; font-weight: 800; text-shadow: 2px 3px 0 #62483b; padding-bottom: 15px; }
+.skills-vend__top span { color: #f6e8c9; }
+.skills-vend__tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin-bottom: 15px; }
+.skills-vend__tab { cursor: pointer; border: 1px solid #e1d6bb; background: #f6e8cf; border-radius: 10px 10px 4px 4px; padding: 9px 12px; color: #62483b; font: 700 12px inherit; font-size: 12px; font-weight: 750; transition: transform .25s, background .25s, box-shadow .25s; }
+.skills-vend__tab:hover:not(:disabled) { transform: translateY(-4px); }
+.skills-vend__tab.is-selected { background: #62483b; color: #fff5e7; transform: translateY(-3px); box-shadow: 0 4px 0 #483429; }
+.skills-vend__display { display: grid; grid-template-columns: minmax(0,1fr) 142px; gap: 14px; }
+.skills-vend__glass { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); align-content: center; gap: 12px; min-height: 240px; padding: 20px 15px; overflow: hidden; background: linear-gradient(115deg,#e9d9c5 0%,#f9f0e0 45%,#dbc6b2 100%); border: 7px solid #62483b; border-radius: 13px; box-shadow: inset 0 4px 15px #614b3938; }
+.skills-vend__glass::after { content: ''; pointer-events: none; position: absolute; inset: 0; background: linear-gradient(110deg,transparent 12%,#fff9ed66 19%,transparent 27%,transparent 68%,#fff8ee40 74%,transparent 79%); }
+.skills-vend__shelf { position: absolute; bottom: 21px; left: 5%; width: 90%; height: 8px; border-radius: 4px; background: #765a47; box-shadow: 0 5px 0 #c9ad91; }
+.skills-vend__product { cursor: pointer; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; min-height: 91px; border: 2px solid #fff9ec; border-radius: 11px 11px 6px 6px; background: #e5c08c; color: #49372e; box-shadow: 3px 5px 0 #7653434a; transform: rotate(-3deg); transition: transform .28s, box-shadow .28s, filter .28s; }
+.skills-vend__product--1 { background: #b9d6ce; transform: rotate(3deg); }
+.skills-vend__product--2 { background: #c5c5dd; transform: rotate(-2deg); }
+.skills-vend__product--3 { background: #d7c7a4; transform: rotate(4deg); }
+.skills-vend__product--4 { background: #d5c79e; transform: rotate(-4deg); }
+.skills-vend__product.is-selected { outline: 3px dashed #62483b; outline-offset: 3px; transform: translateY(-7px) rotate(0) scale(1.04); box-shadow: 3px 10px 0 #76534333; }
+.skills-vend__product:hover:not(:disabled) { filter: brightness(1.06); transform: translateY(-6px) rotate(0); }
+.skills-vend__product-symbol { font-size: 31px; line-height: 1; }
+.skills-vend__product-name { font-size: 10px; font-weight: 800; text-align: center; overflow-wrap: anywhere; }
+.skills-vend__product.is-dropping { animation: skills-vend-drop 1s cubic-bezier(.3,.05,.6,1) forwards; }
+@keyframes skills-vend-drop { 0% {transform: translateY(-7px) rotate(0) scale(1.04);opacity:1} 35% {transform:translateY(10px) rotate(-12deg)} 100% {transform:translateY(210px) rotate(38deg) scale(.65);opacity:0} }
+.skills-vend__controls { display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 18px; }
+.skills-vend__screen { min-height: 98px; background: #49382f; border: 4px solid #62483b; border-radius: 9px; color: #fbe9ce; padding: 11px 8px; display: flex; flex-direction: column; gap: 6px; overflow-wrap: anywhere; }
+.skills-vend__screen small { font-size: 9px; letter-spacing: .08em; color: #e7d2b8; }
+.skills-vend__screen strong { font-size: 15px; line-height: 1.15; }
+.skills-vend__screen span { font-size: 10px; color: #e7d2b8; }
+.skills-vend__dispense { background: #f6e8c9; border: 3px solid #62483b; border-radius: 12px; padding: 15px 6px; font-size: 12px; font-weight: 900; color: #62483b; cursor: pointer; box-shadow: 0 6px 0 #62483b; transition: transform .15s,box-shadow .15s; }
+.skills-vend__dispense:hover:not(:disabled) { background: #fff3d7; transform: translateY(-2px); }
+.skills-vend__dispense:active:not(:disabled) { transform: translateY(5px); box-shadow: 0 1px 0 #62483b; }
+.skills-vend__dispense:disabled { opacity: .7; cursor: wait; }
+.skills-vend__controls-note { color: #f7f2df; text-align: center; font: italic 12px var(--font-hand, cursive); }
+.skills-vend__slot { margin: 16px auto 0; width: 60%; text-align: center; color: #f7f2df; font-size: 10px; letter-spacing: .18em; font-weight: 800; }
+.skills-vend__slot-mouth { margin-top: 6px; height: 25px; border: 6px solid #62483b; border-radius: 5px 5px 12px 12px; background: #36271f; box-shadow: inset 0 6px 7px #211710; }
+.skills-vend__base { text-align: center; padding-top: 13px; font-size: 11px; color: #f7f2df; letter-spacing: .04em; }
+.skills-vend__tray { width: min(100%, 550px); min-height: 85px; border: 2px dashed #b79a83; border-radius: 15px; padding: 15px; display: flex; justify-content: center; align-items: center; background: #f9eddc80; }
+.skills-vend__empty { text-align: center; font: italic 17px var(--font-hand, cursive); color: #80624f; }
+.skills-vend__receipt { width: 100%; background: #fff9ec; color: #49372e; padding: 22px; border: 1px solid #d6bba4; border-radius: 5px; box-shadow: 5px 7px 0 #ac816129; animation: skills-vend-receipt .6s cubic-bezier(.2,1.5,.4,1) both; }
+@keyframes skills-vend-receipt { from { opacity: 0; transform: translateY(-85px) scale(.72) rotate(-9deg) } 65% {opacity:1;transform:translateY(9px) scale(1.03) rotate(2deg)} to {opacity:1;transform:translateY(0) scale(1) rotate(-1deg)} }
+.skills-vend__receipt-top { display: flex; justify-content: space-between; gap: 12px; color: #80624f; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; border-bottom: 1px dashed #d9c2aa; padding-bottom: 10px; }
+.skills-vend__receipt h3 { font: 800 clamp(23px,4vw,34px) var(--font-hand, cursive); margin: 15px 0; color: #62483b; }
+.skills-vend__receipt ul { display: flex; flex-wrap: wrap; gap: 9px; list-style: none; padding: 0; margin: 0; }
+.skills-vend__receipt li { background: #f2dfc8; border: 1px solid #d9b99b; padding: 8px 11px; border-radius: 5px; font-size: 13px; font-weight: 650; animation: skills-vend-chip .35s both; animation-delay: calc(.35s + var(--chip-order) * 65ms); }
+@keyframes skills-vend-chip { from {opacity:0;transform:translateY(12px) rotate(-5deg)} to {opacity:1;transform:translateY(0) rotate(0)} }
+.skills-vend__receipt p { margin: 20px 0 0; color: #80624f; font: italic 15px var(--font-hand, cursive); text-align: right; }
+html.theme-dim .skills-vend-wrap { background: #3a2c24; }
+html.theme-dim .skills-vend__intro p,html.theme-dim .skills-vend__empty { color: #e4d1bc; }
+html.theme-dim .skills-vend__eyebrow { color: #d7b99a; }
+html.theme-dim .skills-vend__tray { background: #3e3028; border-color: #92715e; }
+@media(max-width:600px) { .skills-vend {padding: 5px 0 24px} .skills-vend__machine {padding: 11px;border-width:6px;border-radius:19px} .skills-vend__tabs {gap:5px} .skills-vend__tab {font-size:10px;padding:8px 7px} .skills-vend__display {grid-template-columns:minmax(0,1fr) 99px;gap:7px} .skills-vend__glass {min-height:195px;padding:12px 8px;gap:7px;border-width:4px} .skills-vend__product {min-height:74px;gap:5px} .skills-vend__product-symbol {font-size:24px} .skills-vend__product-name {font-size:8px} .skills-vend__screen {padding:7px 4px;min-height:87px;border-width:2px} .skills-vend__screen strong {font-size:12px} .skills-vend__dispense {font-size:10px;padding:13px 3px} .skills-vend__controls-note {font-size:10px} .skills-vend__top {font-size:24px} .skills-vend__slot {width:75%} }
+@media(prefers-reduced-motion:reduce) { .skills-vend__product.is-dropping,.skills-vend__receipt,.skills-vend__receipt li {animation:none} }
+
+/* Narrow the outer Skills section container */
+
+#skills > .section-inner {
+  width: 85%;
+  max-width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Reduce gap between Skills heading and vending machine intro */
+
+.skills__heading {
+  margin-bottom: 0.5rem;
+}
+
+.skills__subtitle {
+  margin-bottom: 0;
+}
+
+.skills-vend__intro {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  padding-top: 0;
+}
+
+.skills-vend__intro p {
+  margin: 0;
+}
