@@ -15,8 +15,8 @@ const projects = [
       'Machine Learning',
     ],
     image: '/images/projects/modelbench.png',
-    github: null, // Add your ModelBench GitHub repository URL
-    live: null, // Add your deployed ModelBench URL when available
+    github: 'https://github.com/Sania2805/ModelBench', 
+    live: 'https://modelbench1.netlify.app/', 
     note: 'experiment · evaluate · improve ✳',
   },
   {
